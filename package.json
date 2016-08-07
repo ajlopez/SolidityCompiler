@@ -1,0 +1,30 @@
+{
+  "name": "sol-compiler",
+  "description": "Parse and Compile Solidity",
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "solidity",
+    "ethereum",
+    "compiler",
+    "parser"
+  ],
+  "version": "0.0.1alpha",
+  "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajlopez/SolidityCompiler.git"
+  },
+  "main": "./lib/solcomp.js",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "simpleunit ./test"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "simpleunit": "0.0.7"
+  }
+}
