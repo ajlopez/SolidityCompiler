@@ -51,6 +51,17 @@ exports['get two name tokens'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get integer token'] = function (test) {
+	var lexer = lexers.lexer('42');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '42');
+	test.equal(token.type, TokenType.Integer);
+	
+	test.equal(lexer.nextToken(), null);
+}
 
 
 
