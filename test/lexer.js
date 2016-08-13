@@ -33,6 +33,18 @@ exports['get name token without spaces'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get name token without whitespaces'] = function (test) {
+	var lexer = lexers.lexer('  \r\t\nfoo \r\t\n   ');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
 exports['get two name tokens'] = function (test) {
 	var lexer = lexers.lexer('foo bar');
 	
