@@ -99,6 +99,24 @@ exports['get comma as punctuation'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get curly braces as punctuation'] = function (test) {
+	var lexer = lexers.lexer('{}');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '{');
+	test.equal(token.type, TokenType.Punctuation);
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '}');
+	test.equal(token.type, TokenType.Punctuation);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
 exports['get less than as operator'] = function (test) {
 	var lexer = lexers.lexer('<');
 	
