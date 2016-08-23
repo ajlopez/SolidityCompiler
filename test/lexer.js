@@ -155,11 +155,24 @@ exports['get arithmetic operators'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
-
 exports['get comparison operators'] = function (test) {
 	var lexer = lexers.lexer('< > <= >= == !=');
 	
 	[ '<', '>', '<=', '>=', '==', '!=' ].forEach(function (op) {
+		var token = lexer.nextToken();
+		
+		test.ok(token);
+		test.equal(token.value, op);
+		test.equal(token.type, TokenType.Operator);
+	});
+	
+	test.equal(lexer.nextToken(), null);
+}
+
+exports['get logical operators'] = function (test) {
+	var lexer = lexers.lexer('! && ||');
+	
+	[ '!', '&&', '||' ].forEach(function (op) {
 		var token = lexer.nextToken();
 		
 		test.ok(token);
