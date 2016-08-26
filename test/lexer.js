@@ -196,3 +196,16 @@ exports['get bit operators'] = function (test) {
 	
 	test.equal(lexer.nextToken(), null);
 }
+
+exports['get string'] = function (test) {
+	var lexer = lexers.lexer('"foo"');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.String);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
