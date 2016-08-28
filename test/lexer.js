@@ -209,3 +209,27 @@ exports['get string'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get true as boolean'] = function (test) {
+	var lexer = lexers.lexer('true');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'true');
+	test.equal(token.type, TokenType.Boolean);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
+exports['get false as boolean'] = function (test) {
+	var lexer = lexers.lexer('false');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'false');
+	test.equal(token.type, TokenType.Boolean);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
