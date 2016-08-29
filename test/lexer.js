@@ -21,6 +21,30 @@ exports['get name token'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get name token tabs and new lines'] = function (test) {
+	var lexer = lexers.lexer('\t\tfoo\n\r\n');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
+exports['get name token skipping line comments'] = function (test) {
+	var lexer = lexers.lexer('\\\\ line comment\nfoo \\\\ another line comment');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
 exports['get name token without spaces'] = function (test) {
 	var lexer = lexers.lexer('   foo    ');
 	
