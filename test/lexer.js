@@ -111,6 +111,24 @@ exports['get semicolon as punctuation'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get square brackets as punctuation'] = function (test) {
+	var lexer = lexers.lexer('[]');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '[');
+	test.equal(token.type, TokenType.Punctuation);
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, ']');
+	test.equal(token.type, TokenType.Punctuation);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
 exports['get comma as punctuation'] = function (test) {
 	var lexer = lexers.lexer(',');
 	
