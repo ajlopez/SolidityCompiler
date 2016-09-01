@@ -8,3 +8,12 @@ exports['parse null expression from empty string'] = function (test) {
 	
 	test.equal(expr, null);
 };
+
+exports['parse integer'] = function (test) {
+	var parser = parsers.parser('42');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+};
+
