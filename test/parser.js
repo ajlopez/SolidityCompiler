@@ -15,5 +15,7 @@ exports['parse integer'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	test.equal(expr.value(), 42);
 };
+
 
