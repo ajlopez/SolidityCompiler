@@ -18,4 +18,14 @@ exports['parse integer'] = function (test) {
 	test.equal(expr.value(), 42);
 };
 
+exports['parse string'] = function (test) {
+	var parser = parsers.parser('"foo"');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.value(), "foo");
+};
+
+
 
