@@ -27,5 +27,14 @@ exports['parse string'] = function (test) {
 	test.equal(expr.value(), "foo");
 };
 
+exports['parse name'] = function (test) {
+	var parser = parsers.parser('foo');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.name(), "foo");
+};
+
 
 
