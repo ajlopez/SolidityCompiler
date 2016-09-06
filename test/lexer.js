@@ -226,9 +226,9 @@ exports['get logical operators'] = function (test) {
 }
 
 exports['get bit operators'] = function (test) {
-	var lexer = lexers.lexer('^ | & ^');
+	var lexer = lexers.lexer('~ | & ^');
 	
-	[ '^', '|', '&', '^' ].forEach(function (op) {
+	[ '~', '|', '&', '^' ].forEach(function (op) {
 		var token = lexer.nextToken();
 		
 		test.ok(token);
