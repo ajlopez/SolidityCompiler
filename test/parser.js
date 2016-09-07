@@ -36,5 +36,17 @@ exports['parse name'] = function (test) {
 	test.equal(expr.name(), "foo");
 };
 
+exports['parse add integers'] = function (test) {
+	var parser = parsers.parser('1+2');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '+');
+	test.equal(expr.left().value(), 1);
+	test.equal(expr.right().value(), 2);
+};
+
+
 
 
