@@ -80,3 +80,16 @@ exports['parse divide integers'] = function (test) {
 	test.equal(expr.right().value(), 3);
 };
 
+
+exports['parse add and divide integers'] = function (test) {
+	var parser = parsers.parser('1+2/3');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '+');
+	test.equal(expr.left().value(), 1);
+	test.equal(expr.right().operator(), '/');
+	test.equal(expr.right().left().value(), 2);
+	test.equal(expr.right().right().value(), 3);
+};
