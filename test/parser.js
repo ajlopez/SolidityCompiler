@@ -27,6 +27,24 @@ exports['parse string'] = function (test) {
 	test.equal(expr.value(), "foo");
 };
 
+exports['parse true'] = function (test) {
+	var parser = parsers.parser('true');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.value(), true);
+};
+
+exports['parse false'] = function (test) {
+	var parser = parsers.parser('false');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.value(), false);
+};
+
 exports['parse name'] = function (test) {
 	var parser = parsers.parser('foo');
 	
@@ -104,5 +122,16 @@ exports['parse multiply and add integers'] = function (test) {
 	test.equal(expr.left().operator(), '*');
 	test.equal(expr.left().left().value(), 2);
 	test.equal(expr.left().right().value(), 3);
+};
+
+exports['parse or booleans'] = function (test) {
+	var parser = parsers.parser('true||false');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '||');
+	test.equal(expr.left().value(), true);
+	test.equal(expr.right().value(), false);
 };
 
