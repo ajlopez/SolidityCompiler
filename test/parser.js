@@ -135,3 +135,14 @@ exports['parse or booleans'] = function (test) {
 	test.equal(expr.right().value(), false);
 };
 
+exports['parse and booleans'] = function (test) {
+	var parser = parsers.parser('true && false');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '&&');
+	test.equal(expr.left().value(), true);
+	test.equal(expr.right().value(), false);
+};
+
