@@ -146,3 +146,15 @@ exports['parse and booleans'] = function (test) {
 	test.equal(expr.right().value(), false);
 };
 
+exports['parse equal integers'] = function (test) {
+	var parser = parsers.parser('1 == 2');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '==');
+	test.equal(expr.left().value(), 1);
+	test.equal(expr.right().value(), 2);
+};
+
+
