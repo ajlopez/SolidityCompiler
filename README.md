@@ -28,6 +28,9 @@ MIT
 
 ## References
 
+- [Solidity Documentation](http://solidity.readthedocs.io/en/develop/)
+- [Order of Precedence of Operators](http://solidity.readthedocs.io/en/develop/miscellaneous.html#order)
+
 TBD
 
 ## Contribution
