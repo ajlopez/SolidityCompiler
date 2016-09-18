@@ -179,7 +179,6 @@ exports['parse not equal integers'] = function (test) {
 	test.equal(expr.right().value(), 2);
 };
 
-
 exports['parse exponentiation integers'] = function (test) {
 	var parser = parsers.parser('2 ** 3');
 	
@@ -187,6 +186,17 @@ exports['parse exponentiation integers'] = function (test) {
 	
 	test.ok(expr);
 	test.equal(expr.operator(), '**');
+	test.equal(expr.left().value(), 2);
+	test.equal(expr.right().value(), 3);
+};
+
+exports['parse bitwise and integers'] = function (test) {
+	var parser = parsers.parser('2 & 3');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '&');
 	test.equal(expr.left().value(), 2);
 	test.equal(expr.right().value(), 3);
 };
