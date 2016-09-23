@@ -275,3 +275,16 @@ exports['get false as boolean'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get shift operators'] = function (test) {
+	var lexer = lexers.lexer('<< >>');
+	
+	[ '<<', '>>' ].forEach(function (op) {
+		var token = lexer.nextToken();
+		
+		test.ok(token);
+		test.equal(token.value, op);
+		test.equal(token.type, TokenType.Operator);
+	});
+	
+	test.equal(lexer.nextToken(), null);
+}
