@@ -289,3 +289,15 @@ exports['parse bitwise left shift integers'] = function (test) {
 	test.equal(expr.right().value(), 2);
 };
 
+exports['parse bitwise right shift integers'] = function (test) {
+	var parser = parsers.parser('3 >> 2');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '>>');
+	test.equal(expr.left().value(), 3);
+	test.equal(expr.right().value(), 2);
+};
+
+
