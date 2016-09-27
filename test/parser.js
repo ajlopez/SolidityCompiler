@@ -200,6 +200,16 @@ exports['parse bitwise not integer'] = function (test) {
 	test.equal(expr.expression().value(), 3);
 };
 
+exports['parse logical not boolean'] = function (test) {
+	var parser = parsers.parser('!false');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '!');
+	test.equal(expr.expression().value(), false);
+};
+
 exports['parse bitwise and integers'] = function (test) {
 	var parser = parsers.parser('2 & 3');
 	
