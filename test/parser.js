@@ -200,6 +200,16 @@ exports['parse bitwise not integer'] = function (test) {
 	test.equal(expr.expression().value(), 3);
 };
 
+exports['parse unary plus integer'] = function (test) {
+	var parser = parsers.parser('+42');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '+');
+	test.equal(expr.expression().value(), 42);
+};
+
 exports['parse logical not boolean'] = function (test) {
 	var parser = parsers.parser('!false');
 	
