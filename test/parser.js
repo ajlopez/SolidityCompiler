@@ -340,4 +340,15 @@ exports['parse bitwise right shift integers'] = function (test) {
 	test.equal(expr.right().value(), 2);
 };
 
+exports['parse member access'] = function (test) {
+	var parser = parsers.parser('foo.bar');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '.');
+	test.equal(expr.left().value().name(), 'foo');
+	test.equal(expr.right().value().name(), 'bar');
+};
+
 
