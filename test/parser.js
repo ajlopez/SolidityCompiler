@@ -347,8 +347,8 @@ exports['parse member access'] = function (test) {
 	
 	test.ok(expr);
 	test.equal(expr.operator(), '.');
-	test.equal(expr.left().value().name(), 'foo');
-	test.equal(expr.right().value().name(), 'bar');
+	test.equal(expr.left().name(), 'foo');
+	test.equal(expr.right().name(), 'bar');
 };
 
 
