@@ -357,9 +357,10 @@ exports['parse member access with arguments'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
-	test.equal(expr.operator(), '.');
-	test.equal(expr.left().name(), 'foo');
-	test.equal(expr.right().name(), 'bar');
+	test.ok(expr.expression());
+	test.equal(expr.expression().operator(), '.');
+	test.equal(expr.expression().left().name(), 'foo');
+	test.equal(expr.expression().right().name(), 'bar');
 	test.ok(expr.args());
 	test.ok(Array.isArray(expr.args()));
 	test.equal(expr.args().length, 2);
