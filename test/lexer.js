@@ -183,14 +183,14 @@ exports['get greater than as operator'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
-exports['get dot as operator'] = function (test) {
+exports['get dot as punctuation'] = function (test) {
 	var lexer = lexers.lexer('.');
 	
 	var token = lexer.nextToken();
 	
 	test.ok(token);
 	test.equal(token.value, '.');
-	test.equal(token.type, TokenType.Operator);
+	test.equal(token.type, TokenType.Punctuation);
 	
 	test.equal(lexer.nextToken(), null);
 }
