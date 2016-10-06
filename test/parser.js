@@ -350,6 +350,21 @@ exports['parse member access'] = function (test) {
 	test.equal(expr.name(), 'bar');
 };
 
+exports['parse call with arguments'] = function (test) {
+	var parser = parsers.parser('foo(1, 42)');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.ok(expr.expression());
+	test.equal(expr.expression().name(), 'foo');
+	test.ok(expr.arguments());
+	test.ok(Array.isArray(expr.arguments()));
+	test.equal(expr.arguments().length, 2);
+	test.equal(expr.arguments()[0], 1);
+	test.equal(expr.arguments()[1], 42);
+};
+
 exports['parse member access with arguments'] = function (test) {
 	var parser = parsers.parser('foo.bar(1, 42)');
 	
