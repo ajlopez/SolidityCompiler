@@ -361,8 +361,8 @@ exports['parse call with arguments'] = function (test) {
 	test.ok(expr.arguments());
 	test.ok(Array.isArray(expr.arguments()));
 	test.equal(expr.arguments().length, 2);
-	test.equal(expr.arguments()[0], 1);
-	test.equal(expr.arguments()[1], 42);
+	test.equal(expr.arguments()[0].value(), 1);
+	test.equal(expr.arguments()[1].value(), 42);
 };
 
 exports['parse member access with arguments'] = function (test) {
@@ -377,7 +377,7 @@ exports['parse member access with arguments'] = function (test) {
 	test.ok(expr.arguments());
 	test.ok(Array.isArray(expr.arguments()));
 	test.equal(expr.arguments().length, 2);
-	test.equal(expr.arguments()[0], 1);
-	test.equal(expr.arguments()[1], 42);
+	test.equal(expr.arguments()[0].value(), 1);
+	test.equal(expr.arguments()[1].value(), 42);
 };
 
