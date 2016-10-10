@@ -230,6 +230,26 @@ exports['parse logical not boolean'] = function (test) {
 	test.equal(expr.expression().value(), false);
 };
 
+exports['parse post increment integer'] = function (test) {
+	var parser = parsers.parser('2++');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '++');
+	test.equal(expr.expression().value(), 2);
+};
+
+exports['parse post decrement integer'] = function (test) {
+	var parser = parsers.parser('3--');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.operator(), '--');
+	test.equal(expr.expression().value(), 3);
+};
+
 exports['parse bitwise and integers'] = function (test) {
 	var parser = parsers.parser('2 & 3');
 	
