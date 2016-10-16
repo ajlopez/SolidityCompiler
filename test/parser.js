@@ -421,3 +421,15 @@ exports['parse member access with arguments'] = function (test) {
 	test.equal(expr.arguments()[1].value(), 42);
 };
 
+exports['parse assignment expression'] = function (test) {
+	var parser = parsers.parser('foo = 42');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.ok(expr.lvalue());
+	test.equal(expr.lvalue().name(), 'foo');
+	test.ok(expr.expression());
+	test.equal(expr.expression().value(), 42);
+};
+
