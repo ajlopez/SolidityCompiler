@@ -433,3 +433,18 @@ exports['parse assignment expression'] = function (test) {
 	test.equal(expr.expression().value(), 42);
 };
 
+exports['parse assignment command'] = function (test) {
+	var parser = parsers.parser('foo = 42;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.ok(cmd.expression());
+	test.ok(cmd.expression().lvalue());
+	test.equal(cmd.expression().lvalue().name(), 'foo');
+	test.ok(cmd.expression().expression());
+	test.equal(cmd.expression().expression().value(), 42);
+	
+	test.equal(parser.parseCommand(), null);
+};
+
