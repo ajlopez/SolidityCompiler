@@ -460,3 +460,15 @@ exports['parse expression command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse return command'] = function (test) {
+	var parser = parsers.parser('return 42;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.ok(cmd.expression());
+	test.equal(cmd.expression().value(), 42);
+	
+	test.equal(parser.parseCommand(), null);
+};
+
