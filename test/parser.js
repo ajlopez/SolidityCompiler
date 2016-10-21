@@ -472,3 +472,14 @@ exports['parse return command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse return command without value'] = function (test) {
+	var parser = parsers.parser('return;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.ok(cmd.expression());
+	test.equal(cmd.expression().value(), null);
+	
+	test.equal(parser.parseCommand(), null);
+};
