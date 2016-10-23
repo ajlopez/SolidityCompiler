@@ -482,3 +482,18 @@ exports['parse return command without value'] = function (test) {
 	
 	test.equal(parser.parseCommand(), null);
 };
+
+exports['parse composite command'] = function (test) {
+	var parser = parsers.parser('{ return; }');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.ok(cmd.commands());
+	test.equal(cmd.commands().length, 1);
+	test.ok(cmd.commands()[0]);
+	test.equal(cmd.commands()[0].expression(), null);
+	
+	test.equal(parser.parseCommand(), null);
+};
+
