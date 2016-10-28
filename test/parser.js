@@ -521,3 +521,16 @@ exports['parse composite command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse if command'] = function (test) {
+	var parser = parsers.parser('if (true) return;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.ok(cmd.condition());
+	test.equal(cmd.condition().value(), true);
+	test.ok(cmd.command());
+	test.equal(cmd.command().expression(), null);
+	
+	test.equal(parser.parseCommand(), null);
+};
