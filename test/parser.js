@@ -534,3 +534,24 @@ exports['parse if command'] = function (test) {
 	
 	test.equal(parser.parseCommand(), null);
 };
+
+exports['parse while command'] = function (test) {
+	var parser = parsers.parser('while (a < 10) a++;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	
+	test.ok(cmd.condition());
+	test.equal(cmd.condition().operator(), '<');
+	test.equal(cmd.condition().left().name(), 'a');
+	test.equal(cmd.condition().right().value(), 10);
+	
+	test.ok(cmd.command());
+	test.ok(cmd.command().expression());
+	test.equal(cmd.command().expression().operator(), '++');
+	test.equal(cmd.command().expression().expression().name(), 'a');
+	
+	test.equal(parser.parseCommand(), null);
+};
+
