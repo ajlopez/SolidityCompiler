@@ -529,8 +529,24 @@ exports['parse if command'] = function (test) {
 	test.ok(cmd);
 	test.ok(cmd.condition());
 	test.equal(cmd.condition().value(), true);
-	test.ok(cmd.command());
-	test.equal(cmd.command().expression(), null);
+	test.ok(cmd.thencmd());
+	test.equal(cmd.thencmd().expression(), null);
+	
+	test.equal(parser.parseCommand(), null);
+};
+
+exports['parse if command with else'] = function (test) {
+	var parser = parsers.parser('if (true) return; else continue;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.ok(cmd.condition());
+	test.equal(cmd.condition().value(), true);
+	test.ok(cmd.thencmd());
+	test.equal(cmd.thencmd().expression(), null);
+	test.ok(cmd.elsecmd());
+	test.equal(cmd.elsecmd().expression, null);
 	
 	test.equal(parser.parseCommand(), null);
 };
