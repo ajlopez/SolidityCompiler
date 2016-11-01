@@ -571,3 +571,35 @@ exports['parse while command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse for command'] = function (test) {
+	var parser = parsers.parser('while (x = 0; x < 10; x++) a++;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	
+	test.ok(cmd.precmd());
+	test.ok(cmd.precmd().expression());
+	test.ok(cmd.precmd().expression().lvalue());
+	test.equal(cmd.precmd().expression().lvalue().name(), 'x');
+	test.ok(cmd.precmd().expression().expression());
+	test.equal(cmd.precmd().expression().expression().value(), 0);
+	
+	test.ok(cmd.condition());
+	test.equal(cmd.condition().operator(), '<');
+	test.equal(cmd.condition().left().name(), 'x|');
+	test.equal(cmd.condition().right().value(), 10);
+	
+	test.ok(cmd.postcmd());
+	test.ok(cmd.postcmd().expression());
+	test.equal(cmd.postcmd().expression().operator(), '++');
+	test.equal(cmd.postcmd().expression().expression().name(), 'x');
+	
+	test.ok(cmd.command());
+	test.ok(cmd.command().expression());
+	test.equal(cmd.command().expression().operator(), '++');
+	test.equal(cmd.command().expression().expression().name(), 'a');
+	
+	test.equal(parser.parseCommand(), null);
+};
+
