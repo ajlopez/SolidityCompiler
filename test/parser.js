@@ -572,7 +572,7 @@ exports['parse while command'] = function (test) {
 };
 
 exports['parse for command'] = function (test) {
-	var parser = parsers.parser('while (x = 0; x < 10; x++) a++;');
+	var parser = parsers.parser('for (x = 0; x < 10; x++) a++;');
 	
 	var cmd = parser.parseCommand();
 	
@@ -587,7 +587,7 @@ exports['parse for command'] = function (test) {
 	
 	test.ok(cmd.condition());
 	test.equal(cmd.condition().operator(), '<');
-	test.equal(cmd.condition().left().name(), 'x|');
+	test.equal(cmd.condition().left().name(), 'x');
 	test.equal(cmd.condition().right().value(), 10);
 	
 	test.ok(cmd.postcmd());
