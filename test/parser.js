@@ -603,3 +603,14 @@ exports['parse for command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse empty contract'] = function (test) {
+	var parser = parsers.parser('contact MyContract {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'MyContract');
+	test.ok(cmd.body());
+	test.ok(cmd.body().length);
+};
+
+
