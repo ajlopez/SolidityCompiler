@@ -45,6 +45,18 @@ exports['get name token skipping line comments'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get name token skipping comments'] = function (test) {
+	var lexer = lexers.lexer('/* comment */ foo /* another comment */');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
 exports['get name token without spaces'] = function (test) {
 	var lexer = lexers.lexer('   foo    ');
 	
