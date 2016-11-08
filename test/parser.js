@@ -614,4 +614,12 @@ exports['parse empty contract'] = function (test) {
 	test.equal(0, cmd.body().commands().length);
 };
 
+exports['parse string variable'] = function (test) {
+	var parser = parsers.parser('string name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type(), 'string');
+};
 
