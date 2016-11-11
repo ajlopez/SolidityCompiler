@@ -631,3 +631,12 @@ exports['parse int variable'] = function (test) {
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type(), 'int');
 };
+
+exports['parse bool variable'] = function (test) {
+	var parser = parsers.parser('bool name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type(), 'bool');
+};
