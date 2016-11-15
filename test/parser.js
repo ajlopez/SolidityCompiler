@@ -671,3 +671,12 @@ exports['parse bool variable'] = function (test) {
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type(), 'bool');
 };
+
+exports['parse address variable'] = function (test) {
+	var parser = parsers.parser('address name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type(), 'address');
+};
