@@ -623,6 +623,15 @@ exports['parse string variable'] = function (test) {
 	test.equal(cmd.type(), 'string');
 };
 
+exports['parse bytes variable'] = function (test) {
+	var parser = parsers.parser('bytes name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type(), 'bytes');
+};
+
 exports['parse int variable'] = function (test) {
 	var parser = parsers.parser('int name;');
 	var cmd = parser.parseCommand();
