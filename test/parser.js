@@ -681,6 +681,15 @@ exports['parse fixed variable'] = function (test) {
 	test.equal(cmd.type(), 'fixed');
 };
 
+exports['parse unsigned fixed variable'] = function (test) {
+	var parser = parsers.parser('ufixed name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type(), 'ufixed');
+};
+
 exports['parse bool variable'] = function (test) {
 	var parser = parsers.parser('bool name;');
 	var cmd = parser.parseCommand();
