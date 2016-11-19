@@ -707,3 +707,13 @@ exports['parse address variable'] = function (test) {
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type(), 'address');
 };
+
+exports['parse int array variable'] = function (test) {
+	var parser = parsers.parser('int[] name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type(), 'int[]');
+};
+
