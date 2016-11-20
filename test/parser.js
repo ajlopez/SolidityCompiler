@@ -620,7 +620,7 @@ exports['parse string variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'string');
+	test.equal(cmd.type().name(), 'string');
 };
 
 exports['parse bytes variable'] = function (test) {
@@ -629,7 +629,7 @@ exports['parse bytes variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'bytes');
+	test.equal(cmd.type().name(), 'bytes');
 };
 
 exports['parse int variable'] = function (test) {
@@ -638,7 +638,7 @@ exports['parse int variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'int');
+	test.equal(cmd.type().name(), 'int');
 };
 
 exports['parse int variables with size'] = function (test) {
@@ -648,7 +648,7 @@ exports['parse int variables with size'] = function (test) {
 		
 		test.ok(cmd);
 		test.equal(cmd.name(), 'name');
-		test.equal(cmd.type(), 'int' + (k*8));
+		test.equal(cmd.type().name(), 'int' + (k*8));
 	}
 };
 
@@ -658,7 +658,7 @@ exports['parse unsigned int variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'uint');
+	test.equal(cmd.type().name(), 'uint');
 };
 
 exports['parse unsigned int variables with size'] = function (test) {
@@ -668,7 +668,7 @@ exports['parse unsigned int variables with size'] = function (test) {
 		
 		test.ok(cmd);
 		test.equal(cmd.name(), 'name');
-		test.equal(cmd.type(), 'uint' + (k*8));
+		test.equal(cmd.type().name(), 'uint' + (k*8));
 	}
 };
 
@@ -678,7 +678,7 @@ exports['parse fixed variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'fixed');
+	test.equal(cmd.type().name(), 'fixed');
 };
 
 exports['parse unsigned fixed variable'] = function (test) {
@@ -687,7 +687,7 @@ exports['parse unsigned fixed variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'ufixed');
+	test.equal(cmd.type().name(), 'ufixed');
 };
 
 exports['parse bool variable'] = function (test) {
@@ -696,7 +696,7 @@ exports['parse bool variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'bool');
+	test.equal(cmd.type().name(), 'bool');
 };
 
 exports['parse address variable'] = function (test) {
@@ -705,7 +705,7 @@ exports['parse address variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'address');
+	test.equal(cmd.type().name(), 'address');
 };
 
 exports['parse int array variable'] = function (test) {
@@ -714,6 +714,6 @@ exports['parse int array variable'] = function (test) {
 	
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type(), 'int[]');
+	test.equal(cmd.type().name(), 'int[]');
 };
 
