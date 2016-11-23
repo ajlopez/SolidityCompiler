@@ -718,3 +718,14 @@ exports['parse int array variable'] = function (test) {
 	test.equal(cmd.type().length(0), -1);
 };
 
+exports['parse int two dim array variable'] = function (test) {
+	var parser = parsers.parser('int[][] name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().dimensions(), 2);
+	test.equal(cmd.type().name(), 'int[][]');
+	test.equal(cmd.type().length(0), -1);
+	test.equal(cmd.type().length(1), -1);
+};
