@@ -715,6 +715,7 @@ exports['parse int array variable'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type().name(), 'int[]');
+	test.equal(cmd.type().dimensions(), 1);
 	test.equal(cmd.type().length(0), -1);
 };
 
