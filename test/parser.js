@@ -615,7 +615,7 @@ exports['parse empty contract'] = function (test) {
 };
 
 exports['parse empty function'] = function (test) {
-	var parser = parsers.parser('function MyFunction {}');
+	var parser = parsers.parser('function MyFunction() {}');
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
