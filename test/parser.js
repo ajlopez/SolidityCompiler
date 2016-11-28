@@ -626,6 +626,19 @@ exports['parse empty function'] = function (test) {
 	test.equal(0, cmd.body().commands().length);
 };
 
+exports['parse function with command'] = function (test) {
+	var parser = parsers.parser('function MyFunction() { int x; }');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'MyFunction');
+	test.equal(cmd.returns(), null);
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(1, cmd.body().commands().length);
+	test.equal(1, cmd.body().commands()[0].name('x'));
+};
+
 exports['parse empty function with returns type'] = function (test) {
 	var parser = parsers.parser('function MyFunction() returns (int) {}');
 	var cmd = parser.parseCommand();
