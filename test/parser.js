@@ -623,7 +623,7 @@ exports['parse empty function'] = function (test) {
 	test.equal(cmd.returns(), null);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
-	test.equal(0, cmd.body().commands().length);
+	test.equal(cmd.body().commands().length, 0);
 };
 
 exports['parse function with command'] = function (test) {
@@ -635,8 +635,8 @@ exports['parse function with command'] = function (test) {
 	test.equal(cmd.returns(), null);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
-	test.equal(1, cmd.body().commands().length);
-	test.equal(1, cmd.body().commands()[0].name('x'));
+	test.equal(cmd.body().commands().length, 1);
+	test.equal(cmd.body().commands()[0].name(), 'x');
 };
 
 exports['parse empty function with returns type'] = function (test) {
