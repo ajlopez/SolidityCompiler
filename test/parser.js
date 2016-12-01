@@ -527,8 +527,13 @@ exports['parse if command'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'IfCommand');
+	
 	test.ok(cmd.condition());
 	test.equal(cmd.condition().value(), true);
+	
 	test.ok(cmd.thencmd());
 	test.equal(cmd.thencmd().expression(), null);
 	
