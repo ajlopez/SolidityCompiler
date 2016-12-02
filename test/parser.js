@@ -546,10 +546,16 @@ exports['parse if command with else'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'IfCommand');
+
 	test.ok(cmd.condition());
 	test.equal(cmd.condition().value(), true);
+
 	test.ok(cmd.thencmd());
 	test.equal(cmd.thencmd().expression(), null);
+
 	test.ok(cmd.elsecmd());
 	test.equal(cmd.elsecmd().expression, null);
 	
@@ -562,6 +568,9 @@ exports['parse while command'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'WhileCommand');
 	
 	test.ok(cmd.condition());
 	test.equal(cmd.condition().operator(), '<');
