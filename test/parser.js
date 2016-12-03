@@ -590,8 +590,11 @@ exports['parse for command'] = function (test) {
 	
 	var cmd = parser.parseCommand();
 	
-	test.ok(cmd);
-	
+	test.ok(cmd);	
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ForCommand');
+
 	test.ok(cmd.precmd());
 	test.ok(cmd.precmd().expression());
 	test.ok(cmd.precmd().expression().lvalue());
