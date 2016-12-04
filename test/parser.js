@@ -625,6 +625,10 @@ exports['parse empty contract'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ContractCommand');
+
 	test.equal(cmd.name(), 'MyContract');
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
