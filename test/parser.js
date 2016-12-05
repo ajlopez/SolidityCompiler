@@ -640,6 +640,10 @@ exports['parse empty function'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'FunctionCommand');
+
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
 	test.ok(cmd.body());
