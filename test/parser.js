@@ -798,6 +798,10 @@ exports['parse int two dim array variable'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'VarCommand');
+	
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type().dimensions(), 2);
 	test.equal(cmd.type().name(), 'int[][]');
