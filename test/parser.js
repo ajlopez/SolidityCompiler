@@ -513,6 +513,10 @@ exports['parse composite command'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'CompositeCommand');
+
 	test.ok(cmd.commands());
 	test.equal(cmd.commands().length, 1);
 	test.ok(cmd.commands()[0]);
