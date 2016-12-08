@@ -454,6 +454,10 @@ exports['parse expression command'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ExpressionCommand');
+	
 	test.ok(cmd.expression());
 	test.equal(cmd.expression().value(), 42);
 	
