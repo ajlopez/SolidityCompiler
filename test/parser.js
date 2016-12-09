@@ -470,6 +470,10 @@ exports['parse return command'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ReturnCommand');
+
 	test.ok(cmd.expression());
 	test.equal(cmd.expression().value(), 42);
 	
