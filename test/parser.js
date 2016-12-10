@@ -15,6 +15,10 @@ exports['parse integer'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'IntegerExpression');
+	
 	test.equal(expr.value(), 42);
 };
 
