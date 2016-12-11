@@ -28,6 +28,10 @@ exports['parse string'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'StringExpression');
+
 	test.equal(expr.value(), "foo");
 };
 
