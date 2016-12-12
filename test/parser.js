@@ -39,7 +39,10 @@ exports['parse true'] = function (test) {
 	var parser = parsers.parser('true');
 	
 	var expr = parser.parseExpression();
-	
+		
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'BooleanExpression');
+
 	test.ok(expr);
 	test.equal(expr.value(), true);
 };
