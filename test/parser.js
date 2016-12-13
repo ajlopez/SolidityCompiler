@@ -53,6 +53,10 @@ exports['parse false'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+		
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'BooleanExpression');
+    
 	test.equal(expr.value(), false);
 };
 
@@ -62,6 +66,10 @@ exports['parse name'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+		
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'NameExpression');
+
 	test.equal(expr.name(), "foo");
 };
 
