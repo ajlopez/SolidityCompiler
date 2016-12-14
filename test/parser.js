@@ -79,6 +79,10 @@ exports['parse add integers'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+		
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'BinaryExpression');
+
 	test.equal(expr.operator(), '+');
 	test.equal(expr.left().value(), 1);
 	test.equal(expr.right().value(), 2);
