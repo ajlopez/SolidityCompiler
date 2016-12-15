@@ -229,6 +229,10 @@ exports['parse unary plus integer'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+		
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'UnaryExpression');
+
 	test.equal(expr.operator(), '+');
 	test.equal(expr.expression().value(), 42);
 };
