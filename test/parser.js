@@ -263,6 +263,10 @@ exports['parse post increment integer'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), "PostUnaryExpression");
+	
 	test.equal(expr.operator(), '++');
 	test.equal(expr.expression().value(), 2);
 };
@@ -273,6 +277,10 @@ exports['parse post decrement integer'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), "PostUnaryExpression");
+
 	test.equal(expr.operator(), '--');
 	test.equal(expr.expression().value(), 3);
 };
