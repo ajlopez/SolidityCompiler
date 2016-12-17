@@ -421,6 +421,10 @@ exports['parse member access'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'DotExpression');
+	
 	test.equal(expr.expression().name(), 'foo');
 	test.equal(expr.name(), 'bar');
 };
