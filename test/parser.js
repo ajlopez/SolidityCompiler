@@ -435,6 +435,10 @@ exports['parse call with arguments'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), 'CallExpression');
+
 	test.ok(expr.expression());
 	test.equal(expr.expression().name(), 'foo');
 	test.ok(expr.arguments());
