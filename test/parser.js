@@ -529,6 +529,10 @@ exports['parse continue command'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype);
+	test.equal(cmd.cmdtype(), 'ContinueCommand');
+	
 	test.equal(cmd.name, null);
 	test.equal(cmd.expression, null);
 	
