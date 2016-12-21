@@ -470,6 +470,10 @@ exports['parse assignment expression'] = function (test) {
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
+	
+	test.ok(expr.exprtype);
+	test.equal(expr.exprtype(), "AssignmentExpression");
+	
 	test.ok(expr.lvalue());
 	test.equal(expr.lvalue().name(), 'foo');
 	test.ok(expr.expression());
@@ -485,6 +489,7 @@ exports['parse assignment command'] = function (test) {
 	test.ok(cmd.expression());
 	test.ok(cmd.expression().lvalue());
 	test.equal(cmd.expression().lvalue().name(), 'foo');
+	
 	test.ok(cmd.expression().expression());
 	test.equal(cmd.expression().expression().value(), 42);
 	
