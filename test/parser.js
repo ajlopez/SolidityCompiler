@@ -19,6 +19,8 @@ exports['parse integer'] = function (test) {
 	test.ok(expr.exprtype);
 	test.equal(expr.exprtype(), 'IntegerExpression');
 	
+	test.deepEqual(expr.toObject(), { type: 'IntegerExpression', value: 42 });
+	
 	test.equal(expr.value(), 42);
 };
 
