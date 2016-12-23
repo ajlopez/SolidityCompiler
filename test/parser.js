@@ -34,6 +34,8 @@ exports['parse string'] = function (test) {
 	test.ok(expr.exprtype);
 	test.equal(expr.exprtype(), 'StringExpression');
 
+	test.deepEqual(expr.toObject(), { type: 'StringExpression', value: 'foo' });
+
 	test.equal(expr.value(), "foo");
 };
 
