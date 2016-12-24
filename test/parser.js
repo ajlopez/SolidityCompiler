@@ -49,6 +49,8 @@ exports['parse true'] = function (test) {
 
 	test.ok(expr);
 	test.equal(expr.value(), true);
+
+	test.deepEqual(expr.toObject(), { type: 'BooleanExpression', value: true });	
 };
 
 exports['parse false'] = function (test) {
@@ -62,6 +64,8 @@ exports['parse false'] = function (test) {
 	test.equal(expr.exprtype(), 'BooleanExpression');
     
 	test.equal(expr.value(), false);
+
+	test.deepEqual(expr.toObject(), { type: 'BooleanExpression', value: false });
 };
 
 exports['parse name'] = function (test) {
