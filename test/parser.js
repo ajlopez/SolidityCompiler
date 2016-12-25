@@ -79,6 +79,8 @@ exports['parse name'] = function (test) {
 	test.equal(expr.exprtype(), 'NameExpression');
 
 	test.equal(expr.name(), "foo");
+
+	test.deepEqual(expr.toObject(), { type: 'NameExpression', name: 'foo' });
 };
 
 exports['parse add integers'] = function (test) {
