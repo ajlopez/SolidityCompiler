@@ -534,6 +534,8 @@ exports['parse return command'] = function (test) {
 
 	test.ok(cmd.expression());
 	test.equal(cmd.expression().value(), 42);
+
+	test.deepEqual(cmd.toObject(), { type: 'ReturnCommand', expression: { type: 'IntegerExpression', value: 42 } });
 	
 	test.equal(parser.parseCommand(), null);
 };
