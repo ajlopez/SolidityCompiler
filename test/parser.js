@@ -580,6 +580,8 @@ exports['parse return command without value'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.expression(), null);
 	
+	test.deepEqual(cmd.toObject(), { type: 'ReturnCommand' });
+
 	test.equal(parser.parseCommand(), null);
 };
 
@@ -590,6 +592,8 @@ exports['parse composite command'] = function (test) {
 	
 	test.ok(cmd);
 	
+
+
 	test.ok(cmd.cmdtype());
 	test.equal(cmd.cmdtype(), 'CompositeCommand');
 
