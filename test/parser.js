@@ -519,6 +519,8 @@ exports['parse expression command'] = function (test) {
 	test.ok(cmd.expression());
 	test.equal(cmd.expression().value(), 42);
 	
+	test.deepEqual(cmd.toObject(), { type: 'ExpressionCommand', expression: { type: 'IntegerExpression', value: 42 } });
+	
 	test.equal(parser.parseCommand(), null);
 };
 
