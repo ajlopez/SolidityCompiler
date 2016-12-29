@@ -571,6 +571,8 @@ exports['parse break command'] = function (test) {
 	test.equal(cmd.name, null);
 	test.equal(cmd.expression, null);
 	
+	test.deepEqual(cmd.toObject(), { type: 'BreakCommand' });
+
 	test.equal(parser.parseCommand(), null);
 };
 
