@@ -555,6 +555,8 @@ exports['parse continue command'] = function (test) {
 	test.equal(cmd.name, null);
 	test.equal(cmd.expression, null);
 	
+	test.deepEqual(cmd.toObject(), { type: 'ContinueCommand' });
+	
 	test.equal(parser.parseCommand(), null);
 };
 
