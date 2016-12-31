@@ -486,8 +486,11 @@ exports['parse assignment expression'] = function (test) {
 	
 	test.ok(expr.lvalue());
 	test.equal(expr.lvalue().name(), 'foo');
+	
 	test.ok(expr.expression());
 	test.equal(expr.expression().value(), 42);
+	
+	test.deepEqual(expr.toObject(), { type: 'AssignmentExpression', lvalue: { type: 'NameExpression', name: 'foo' }, expression: { type: 'IntegerExpression', value: 42 } });
 };
 
 exports['parse assignment command'] = function (test) {
