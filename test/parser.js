@@ -245,6 +245,8 @@ exports['parse unary plus integer'] = function (test) {
 
 	test.equal(expr.operator(), '+');
 	test.equal(expr.expression().value(), 42);
+
+	test.deepEqual(expr.toObject(), { type: 'UnaryExpression', operator: '+', expression: { type: 'IntegerExpression', value: 42 } });
 };
 
 exports['parse unary minus integer'] = function (test) {
