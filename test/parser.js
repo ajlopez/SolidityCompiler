@@ -285,6 +285,8 @@ exports['parse post increment integer'] = function (test) {
 	
 	test.equal(expr.operator(), '++');
 	test.equal(expr.expression().value(), 2);
+
+	test.deepEqual(expr.toObject(), { type: 'PostUnaryExpression', operator: '++', expression: { type: 'IntegerExpression', value: 2 } });
 };
 
 exports['parse post decrement integer'] = function (test) {
