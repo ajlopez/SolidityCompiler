@@ -257,6 +257,8 @@ exports['parse unary minus integer'] = function (test) {
 	test.ok(expr);
 	test.equal(expr.operator(), '-');
 	test.equal(expr.expression().value(), 42);
+
+	test.deepEqual(expr.toObject(), { type: 'UnaryExpression', operator: '-', expression: { type: 'IntegerExpression', value: 42 } });
 };
 
 exports['parse logical not boolean'] = function (test) {
@@ -267,6 +269,8 @@ exports['parse logical not boolean'] = function (test) {
 	test.ok(expr);
 	test.equal(expr.operator(), '!');
 	test.equal(expr.expression().value(), false);
+
+	test.deepEqual(expr.toObject(), { type: 'UnaryExpression', operator: '!', expression: { type: 'BooleanExpression', value: false } });
 };
 
 exports['parse post increment integer'] = function (test) {
