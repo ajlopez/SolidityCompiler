@@ -301,6 +301,8 @@ exports['parse post decrement integer'] = function (test) {
 
 	test.equal(expr.operator(), '--');
 	test.equal(expr.expression().value(), 3);
+
+	test.deepEqual(expr.toObject(), { type: 'PostUnaryExpression', operator: '--', expression: { type: 'IntegerExpression', value: 3 } });
 };
 
 exports['parse pre increment integer'] = function (test) {
@@ -311,6 +313,8 @@ exports['parse pre increment integer'] = function (test) {
 	test.ok(expr);
 	test.equal(expr.operator(), '++');
 	test.equal(expr.expression().value(), 2);
+
+	test.deepEqual(expr.toObject(), { type: 'UnaryExpression', operator: '++', expression: { type: 'IntegerExpression', value: 2 } });
 };
 
 exports['parse pre decrement integer'] = function (test) {
@@ -321,6 +325,8 @@ exports['parse pre decrement integer'] = function (test) {
 	test.ok(expr);
 	test.equal(expr.operator(), '--');
 	test.equal(expr.expression().value(), 3);
+
+	test.deepEqual(expr.toObject(), { type: 'UnaryExpression', operator: '--', expression: { type: 'IntegerExpression', value: 3 } });
 };
 
 exports['parse bitwise and integers'] = function (test) {
