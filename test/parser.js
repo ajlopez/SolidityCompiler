@@ -96,6 +96,8 @@ exports['parse add integers'] = function (test) {
 	test.equal(expr.operator(), '+');
 	test.equal(expr.left().value(), 1);
 	test.equal(expr.right().value(), 2);
+
+	test.deepEqual(expr.toObject(), { type: 'BinaryExpression', operator: '+', left: { type: 'IntegerExpression', value: 1 }, right: { type: 'IntegerExpression', value: 2 } });
 };
 
 exports['parse subtract integers'] = function (test) {
