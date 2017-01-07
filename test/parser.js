@@ -135,6 +135,8 @@ exports['parse divide integers'] = function (test) {
 	test.equal(expr.operator(), '/');
 	test.equal(expr.left().value(), 2);
 	test.equal(expr.right().value(), 3);
+
+	test.deepEqual(expr.toObject(), { type: 'BinaryExpression', operator: '/', left: { type: 'IntegerExpression', value: 2 }, right: { type: 'IntegerExpression', value: 3 } });
 };
 
 exports['parse module integers'] = function (test) {
