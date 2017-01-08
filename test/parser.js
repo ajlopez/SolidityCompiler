@@ -459,6 +459,8 @@ exports['parse member access'] = function (test) {
 	
 	test.equal(expr.expression().name(), 'foo');
 	test.equal(expr.name(), 'bar');
+
+	test.deepEqual(expr.toObject(), { type: 'DotExpression', name: 'bar', expression: { type: 'NameExpression', name: 'foo' } });
 };
 
 exports['parse call with arguments'] = function (test) {
