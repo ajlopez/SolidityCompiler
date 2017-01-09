@@ -480,6 +480,8 @@ exports['parse call with arguments'] = function (test) {
 	test.equal(expr.arguments().length, 2);
 	test.equal(expr.arguments()[0].value(), 1);
 	test.equal(expr.arguments()[1].value(), 42);
+
+	test.deepEqual(expr.toObject(), { type: 'CallExpression', expression: { type: 'NameExpression', name: 'foo' }, arguments: [ { type: 'IntegerExpression', value: 1 }, { type: 'IntegerExpression', value: 42 } ] });
 };
 
 exports['parse member access with arguments'] = function (test) {
