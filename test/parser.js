@@ -627,8 +627,6 @@ exports['parse composite command'] = function (test) {
 	
 	test.ok(cmd);
 	
-
-
 	test.ok(cmd.cmdtype());
 	test.equal(cmd.cmdtype(), 'CompositeCommand');
 
@@ -636,7 +634,9 @@ exports['parse composite command'] = function (test) {
 	test.equal(cmd.commands().length, 1);
 	test.ok(cmd.commands()[0]);
 	test.equal(cmd.commands()[0].expression(), null);
-	
+		
+	test.deepEqual(cmd.toObject(), { type: 'CompositeCommand', commands: [ { type: 'ReturnCommand' } ] });
+
 	test.equal(parser.parseCommand(), null);
 };
 
