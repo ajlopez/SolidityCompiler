@@ -700,6 +700,13 @@ exports['parse while command'] = function (test) {
 	test.ok(cmd.command().expression());
 	test.equal(cmd.command().expression().operator(), '++');
 	test.equal(cmd.command().expression().expression().name(), 'a');
+
+	test.deepEqual(cmd.toObject(), { type: 'WhileCommand', 
+		condition: { type: 'BinaryExpression', operator: '<', 
+			left: { type: 'NameExpression', name: 'a' },
+			right: { type: 'IntegerExpression', value: 10 } },
+		command: { type: 'ExpressionCommand', expression: { type: 'PostUnaryExpression', operator: '++', expression: { type: 'NameExpression', name: 'a' } } } }
+	);
 	
 	test.equal(parser.parseCommand(), null);
 };
