@@ -759,6 +759,8 @@ exports['parse empty contract'] = function (test) {
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(0, cmd.body().commands().length);
+
+	test.deepEqual(cmd.toObject(), { type: 'ContractCommand', name: 'MyContract', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse empty function'] = function (test) {
