@@ -821,6 +821,8 @@ exports['parse bytes variable'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type().name(), 'bytes');
+
+	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'name', vartype: 'bytes' });
 };
 
 exports['parse int variable'] = function (test) {
