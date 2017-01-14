@@ -832,6 +832,8 @@ exports['parse int variable'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'name');
 	test.equal(cmd.type().name(), 'int');
+
+	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'name', vartype: 'int' });
 };
 
 exports['parse int variable with value'] = function (test) {
@@ -843,6 +845,8 @@ exports['parse int variable with value'] = function (test) {
 	test.equal(cmd.type().name(), 'int');
     test.ok(cmd.expression());
     test.equal(cmd.expression().value(), 42);
+
+	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'name', vartype: 'int', expression: { type: 'IntegerExpression', value: 42 } });
 };
 
 exports['parse int variables with size'] = function (test) {
