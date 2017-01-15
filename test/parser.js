@@ -777,6 +777,8 @@ exports['parse empty function'] = function (test) {
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with command'] = function (test) {
