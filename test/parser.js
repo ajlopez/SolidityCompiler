@@ -807,6 +807,7 @@ exports['parse empty function with returns type'] = function (test) {
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(0, cmd.body().commands().length);
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] }, returns: 'int' } );
 };
 
 exports['parse string variable'] = function (test) {
