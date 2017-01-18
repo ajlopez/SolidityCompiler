@@ -655,6 +655,8 @@ exports['parse if command'] = function (test) {
 	
 	test.ok(cmd.thencmd());
 	test.equal(cmd.thencmd().expression(), null);
+		
+	test.deepEqual(cmd.toObject(), { type: 'IfCommand', condition: { type: 'BooleanExpression', value: true }, thencmd: { type: 'ReturnCommand' } });
 	
 	test.equal(parser.parseCommand(), null);
 };
