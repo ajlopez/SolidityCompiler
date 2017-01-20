@@ -747,6 +747,13 @@ exports['parse for command'] = function (test) {
 	test.equal(cmd.command().expression().operator(), '++');
 	test.equal(cmd.command().expression().expression().name(), 'a');
 	
+	test.deepEqual(cmd.toObject(), { type: 'ForCommand', 
+		condition: { type: 'BinaryExpression', operator: '<', 
+			left: { type: 'NameExpression', name: 'x' },
+			right: { type: 'IntegerExpression', value: 10 } },
+		command: { type: 'ExpressionCommand', expression: { type: 'PostUnaryExpression', operator: '++', expression: { type: 'NameExpression', name: 'a' } } } }
+	);
+
 	test.equal(parser.parseCommand(), null);
 };
 
