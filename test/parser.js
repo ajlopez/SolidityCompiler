@@ -865,6 +865,17 @@ exports['parse byte variable'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'name', vartype: 'byte' });
 };
 
+exports['parse bytes1 variable'] = function (test) {
+	var parser = parsers.parser('bytes1 name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().name(), 'bytes1');
+
+	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'name', vartype: 'bytes1' });
+};
+
 exports['parse int variable'] = function (test) {
 	var parser = parsers.parser('int name;');
 	var cmd = parser.parseCommand();
