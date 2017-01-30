@@ -911,6 +911,17 @@ exports['parse int variables with size'] = function (test) {
 	}
 };
 
+exports['parse bytes variables with size'] = function (test) {
+	for (var k = 1; k <= 32; k++) {
+		var parser = parsers.parser('bytes' + k + ' name;');
+		var cmd = parser.parseCommand();
+		
+		test.ok(cmd);
+		test.equal(cmd.name(), 'name');
+		test.equal(cmd.type().name(), 'bytes' + k);
+	}
+};
+
 exports['parse unsigned int variable'] = function (test) {
 	var parser = parsers.parser('uint name;');
 	var cmd = parser.parseCommand();
