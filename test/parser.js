@@ -798,7 +798,7 @@ exports['parse empty function'] = function (test) {
 
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.internal(), true);
+	test.equal(cmd.modifiers().internal, true);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
@@ -813,7 +813,7 @@ exports['parse function with command'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.internal(), true);
+	test.equal(cmd.modifiers().internal, true);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 1);
@@ -829,7 +829,7 @@ exports['parse empty function with returns type'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'MyFunction');
 	test.ok(cmd.returns());
-	test.equal(cmd.internal(), true);
+	test.equal(cmd.modifiers().internal, true);
 	test.equal(cmd.returns().name(), 'int');
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
