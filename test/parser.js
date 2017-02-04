@@ -803,7 +803,7 @@ exports['parse empty function'] = function (test) {
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse empty function with external modifier'] = function (test) {
@@ -823,7 +823,7 @@ exports['parse empty function with external modifier'] = function (test) {
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: false, external : true }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with command'] = function (test) {
@@ -839,7 +839,7 @@ exports['parse function with command'] = function (test) {
 	test.equal(cmd.body().commands().length, 1);
 	test.equal(cmd.body().commands()[0].name(), 'x');
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [ { type: 'VarCommand', vartype: 'int', name: 'x' }] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [ { type: 'VarCommand', vartype: 'int', name: 'x' }] } } );
 };
 
 exports['parse empty function with returns type'] = function (test) {
@@ -854,7 +854,7 @@ exports['parse empty function with returns type'] = function (test) {
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(0, cmd.body().commands().length);
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] }, returns: 'int' } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] }, returns: 'int' } );
 };
 
 exports['parse string variable'] = function (test) {
