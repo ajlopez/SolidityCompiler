@@ -787,6 +787,23 @@ exports['parse empty contract'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'ContractCommand', name: 'MyContract', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
+exports['parse empty library'] = function (test) {
+	var parser = parsers.parser('library MyLibrary {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'LibraryCommand');
+
+	test.equal(cmd.name(), 'MyLibrary');
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(0, cmd.body().commands().length);
+
+	test.deepEqual(cmd.toObject(), { type: 'LibraryCommand', name: 'MyLibrary', body: { type: 'CompositeCommand', commands: [] } } );
+};
+
 exports['parse empty function'] = function (test) {
 	var parser = parsers.parser('function MyFunction() {}');
 	var cmd = parser.parseCommand();
