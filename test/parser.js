@@ -823,6 +823,25 @@ exports['parse empty function'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
+exports['parse empty anonymous function'] = function (test) {
+	var parser = parsers.parser('function () {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'FunctionCommand');
+
+	test.equal(cmd.name(), null);
+	test.equal(cmd.returns(), null);
+	test.equal(cmd.modifiers().internal, true);
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+};
+
 exports['parse function with payable modifier'] = function (test) {
 	var parser = parsers.parser('function MyFunction() payable {}');
 	var cmd = parser.parseCommand();
