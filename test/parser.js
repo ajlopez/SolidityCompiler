@@ -839,7 +839,7 @@ exports['parse empty anonymous function'] = function (test) {
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: null, modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with payable modifier'] = function (test) {
