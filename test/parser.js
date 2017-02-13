@@ -848,6 +848,33 @@ exports['parse function with argument'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', arguments: [ { name: 'a', type: 'int' } ], modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
+exports['parse function with two arguments'] = function (test) {
+	var parser = parsers.parser('function MyFunction(int a, int b) {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'FunctionCommand');
+
+	test.equal(cmd.name(), 'MyFunction');
+	test.equal(cmd.returns(), null);
+	test.equal(cmd.modifiers().internal, true);
+	
+	test.ok(cmd.arguments());
+	test.equal(2, cmd.arguments().length);
+	test.equal('a', cmd.arguments()[0].name);
+	test.equal('int', cmd.arguments()[0].type.name());
+	test.equal('b', cmd.arguments()[1].name);
+	test.equal('int', cmd.arguments()[1].type.name());
+	
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', arguments: [ { name: 'a', type: 'int' }, { name: 'b', type: 'int' } ], modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+};
+
 exports['parse empty anonymous function'] = function (test) {
 	var parser = parsers.parser('function () {}');
 	var cmd = parser.parseCommand();
