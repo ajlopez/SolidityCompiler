@@ -804,6 +804,21 @@ exports['parse empty library'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'LibraryCommand', name: 'MyLibrary', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
+exports['parse event without arguments'] = function (test) {
+	var parser = parsers.parser('event EmptyEvent();');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'EventCommand');
+
+	test.equal(cmd.name(), 'EmptyEvent');
+	test.equal(cmd.arity(), 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'EventCommand', name: 'EmptyEvent' } );
+};
+
 exports['parse empty function'] = function (test) {
 	var parser = parsers.parser('function MyFunction() {}');
 	var cmd = parser.parseCommand();
