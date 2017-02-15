@@ -33,6 +33,18 @@ exports['get name token with digits'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 }
 
+exports['get name token with initial underscore'] = function (test) {
+	var lexer = lexers.lexer('_foo');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '_foo');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+}
+
 exports['get name token tabs and new lines'] = function (test) {
 	var lexer = lexers.lexer('\t\tfoo\n\r\n');
 	
