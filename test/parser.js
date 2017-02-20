@@ -834,6 +834,21 @@ exports['parse event with argument'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'EventCommand', name: 'MyEvent', arguments: [ { name: 'a', type: 'int' } ] } );
 };
 
+exports['parse event with two arguments'] = function (test) {
+	var parser = parsers.parser('event MyEvent(int a, int b);');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'EventCommand');
+
+	test.equal(cmd.name(), 'MyEvent');
+	test.equal(cmd.arity(), 2);
+
+	test.deepEqual(cmd.toObject(), { type: 'EventCommand', name: 'MyEvent', arguments: [ { name: 'a', type: 'int' }, { name: 'b', type: 'int' } ] } );
+};
+
 exports['parse empty function'] = function (test) {
 	var parser = parsers.parser('function MyFunction() {}');
 	var cmd = parser.parseCommand();
