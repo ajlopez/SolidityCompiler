@@ -30,6 +30,7 @@ MIT
 
 - [Solidity Documentation](http://solidity.readthedocs.io/en/develop/)
 - [Order of Precedence of Operators](http://solidity.readthedocs.io/en/develop/miscellaneous.html#order)
+- [Solidity Features](https://github.com/ethereum/wiki/wiki/Solidity-Features)
 
 TBD
 
