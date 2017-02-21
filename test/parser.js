@@ -571,6 +571,21 @@ exports['parse return command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse throw command'] = function (test) {
+	var parser = parsers.parser('throw;');
+	
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ThrowCommand');
+
+	test.deepEqual(cmd.toObject(), { type: 'ThrowCommand' });
+	
+	test.equal(parser.parseCommand(), null);
+};
+
 exports['parse continue command'] = function (test) {
 	var parser = parsers.parser('continue;');
 	
