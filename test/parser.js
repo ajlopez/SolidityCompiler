@@ -1036,6 +1036,26 @@ exports['parse string variable'] = function (test) {
 	test.equal(cmd.type().name(), 'string');
 };
 
+exports['parse string variable with public visibility'] = function (test) {
+	var parser = parsers.parser('string public name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().name(), 'string');
+	test.equal(cmd.visibility(), 'public');
+};
+
+exports['parse string variable with private visibility'] = function (test) {
+	var parser = parsers.parser('string private name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().name(), 'string');
+	test.equal(cmd.visibility(), 'private');
+};
+
 exports['parse bytes variable'] = function (test) {
 	var parser = parsers.parser('bytes name;');
 	var cmd = parser.parseCommand();
