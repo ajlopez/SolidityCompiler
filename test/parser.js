@@ -785,6 +785,18 @@ exports['parse for command'] = function (test) {
 	test.equal(parser.parseCommand(), null);
 };
 
+exports['parse empty struct'] = function (test) {
+	var parser = parsers.parser('struct MyStruct {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'StructCommand');
+
+	test.equal(cmd.name(), 'MyStruct');
+};
+
 exports['parse empty contract'] = function (test) {
 	var parser = parsers.parser('contract MyContract {}');
 	var cmd = parser.parseCommand();
