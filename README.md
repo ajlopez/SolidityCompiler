@@ -31,6 +31,7 @@ MIT
 - [Solidity Documentation](http://solidity.readthedocs.io/en/develop/)
 - [Order of Precedence of Operators](http://solidity.readthedocs.io/en/develop/miscellaneous.html#order)
 - [Solidity Features](https://github.com/ethereum/wiki/wiki/Solidity-Features)
+- [Visibility and Getters](http://solidity.readthedocs.io/en/latest/contracts.html#visibility-and-getters)
 
 TBD
 
