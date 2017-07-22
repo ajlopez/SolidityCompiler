@@ -1068,6 +1068,26 @@ exports['parse string variable with private visibility'] = function (test) {
 	test.equal(cmd.visibility(), 'private');
 };
 
+exports['parse string variable with internal visibility'] = function (test) {
+	var parser = parsers.parser('string internal name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().name(), 'string');
+	test.equal(cmd.visibility(), 'internal');
+};
+
+exports['parse string variable with external visibility'] = function (test) {
+	var parser = parsers.parser('string external name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().name(), 'string');
+	test.equal(cmd.visibility(), 'external');
+};
+
 exports['parse bytes variable'] = function (test) {
 	var parser = parsers.parser('bytes name;');
 	var cmd = parser.parseCommand();
@@ -1229,3 +1249,4 @@ exports['parse int two dim array variable'] = function (test) {
 	test.equal(cmd.type().length(0), -1);
 	test.equal(cmd.type().length(1), -1);
 };
+
