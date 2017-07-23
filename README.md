@@ -32,6 +32,8 @@ MIT
 - [Order of Precedence of Operators](http://solidity.readthedocs.io/en/develop/miscellaneous.html#order)
 - [Solidity Features](https://github.com/ethereum/wiki/wiki/Solidity-Features)
 - [Visibility and Getters](http://solidity.readthedocs.io/en/latest/contracts.html#visibility-and-getters)
+- [Layout of State Variables in Storage](http://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage)?)
+- [How does keccak256 concatenate values inside a Solidity smart contract?](https://ethereum.stackexchange.com/questions/13741/how-does-keccak256-concatenate-values-inside-a-solidity-smart-contract)
 
 TBD
 
