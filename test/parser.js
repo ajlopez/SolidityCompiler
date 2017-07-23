@@ -887,13 +887,14 @@ exports['parse empty function'] = function (test) {
 
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 	test.equal(cmd.arity(), 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with argument'] = function (test) {
@@ -907,7 +908,8 @@ exports['parse function with argument'] = function (test) {
 
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
 	
 	test.ok(cmd.arguments());
 	test.equal(1, cmd.arguments().length);
@@ -919,7 +921,7 @@ exports['parse function with argument'] = function (test) {
 	test.equal(cmd.body().commands().length, 0);
 	test.equal(cmd.arity(), 1);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', arguments: [ { name: 'a', type: 'int256' } ], modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', arguments: [ { name: 'a', type: 'int256' } ], body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with two arguments'] = function (test) {
@@ -933,7 +935,8 @@ exports['parse function with two arguments'] = function (test) {
 
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
 	
 	test.ok(cmd.arguments());
 	test.equal(2, cmd.arguments().length);
@@ -947,7 +950,7 @@ exports['parse function with two arguments'] = function (test) {
 	test.equal(cmd.body().commands().length, 0);
 	test.equal(cmd.arity(), 2);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', arguments: [ { name: 'a', type: 'int256' }, { name: 'b', type: 'int256' } ], modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', arguments: [ { name: 'a', type: 'int256' }, { name: 'b', type: 'int256' } ], body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse empty anonymous function'] = function (test) {
@@ -961,12 +964,13 @@ exports['parse empty anonymous function'] = function (test) {
 
 	test.equal(cmd.name(), null);
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: null, modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: null, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with payable modifier'] = function (test) {
@@ -980,15 +984,16 @@ exports['parse function with payable modifier'] = function (test) {
 
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.deepEqual(cmd.modifiers(),  { payable: true });
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false, payable: true }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { payable: true }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
-exports['parse empty function with external modifier'] = function (test) {
+exports['parse empty function with external visibility'] = function (test) {
 	var parser = parsers.parser('function MyFunction() external {}');
 	var cmd = parser.parseCommand();
 	
@@ -999,13 +1004,13 @@ exports['parse empty function with external modifier'] = function (test) {
 
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, false);
-	test.equal(cmd.modifiers().external, true);
+	test.equal(cmd.visibility(), 'external');
+	test.equal(cmd.modifiers(), null);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: false, external : true }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', visibility: 'external', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with command'] = function (test) {
@@ -1015,13 +1020,14 @@ exports['parse function with command'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 1);
 	test.equal(cmd.body().commands()[0].name(), 'x');
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [ { type: 'VarCommand', vartype: 'int256', name: 'x' }] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [ { type: 'VarCommand', vartype: 'int256', name: 'x' }] } } );
 };
 
 exports['parse empty function with returns type'] = function (test) {
@@ -1031,12 +1037,13 @@ exports['parse empty function with returns type'] = function (test) {
 	test.ok(cmd);
 	test.equal(cmd.name(), 'MyFunction');
 	test.ok(cmd.returns());
-	test.equal(cmd.modifiers().internal, true);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
 	test.equal(cmd.returns().name(), 'int256');
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(0, cmd.body().commands().length);
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { internal: true, external : false }, body: { type: 'CompositeCommand', commands: [] }, returns: 'int256' } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] }, returns: 'int256' } );
 };
 
 exports['parse string variable'] = function (test) {
