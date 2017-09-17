@@ -1241,6 +1241,19 @@ exports['parse int array variable'] = function (test) {
 	test.equal(cmd.type().length(0), -1);
 };
 
+exports['parse int array variable with explicit length'] = function (test) {
+	var parser = parsers.parser('int[42] name;');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'name');
+	test.equal(cmd.type().name(), 'int256[]');
+	test.equal(cmd.type().dimensions(), 1);
+	test.ok(cmd.type().length(0));
+	test.ok(cmd.type().length(0).toObject);
+	test.deepEqual(cmd.type().length(0).toObject(), { type: "IntegerExpression", value: 42 });
+};
+
 exports['parse int two dim array variable'] = function (test) {
 	var parser = parsers.parser('int[][] name;');
 	var cmd = parser.parseCommand();
