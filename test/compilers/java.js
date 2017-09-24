@@ -250,3 +250,24 @@ exports['compile contract with two variables'] = function (test) {
     ]);
 }
 
+exports['compile contract with two functions'] = function (test) {
+    var result = compileCommand('contract Simple { int counter; function setCounter(int value) { counter = value; } function getCounter() returns(int) { return counter; } }');
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+
+    test.deepEqual(result, [ 
+        'public class Simple extends Contract {',
+        '    Int256 counter = new Int256();',
+        '',
+        '    public void setCounter(Int256 value) {',
+        '        counter.set(value);',
+        '    }',
+        '',
+        '    public Int256 getCounter() {',
+        '        return counter;',
+        '    }',
+        '}'
+    ]);
+}
+
