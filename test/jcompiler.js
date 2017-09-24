@@ -182,3 +182,39 @@ exports['compile subtract integer and integer'] = function (test) {
     test.equal(result, '1 - 2');
 };
 
+exports['compile multiply variable and integer'] = function (test) {
+    var parser = parsers.parser('a * 2');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'a.multiply(2)');
+};
+
+exports['compile multiply integer and variable'] = function (test) {
+    var parser = parsers.parser('2 * a');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'a.multiply(2)');
+};
+
+exports['compile multiply integer and integer'] = function (test) {
+    var parser = parsers.parser('21 * 2');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, '21 * 2');
+};
+
