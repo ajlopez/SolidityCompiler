@@ -234,3 +234,18 @@ exports['compile empty contract'] = function (test) {
 
     test.deepEqual(result, [ 'public class Empty : Contract {', '}' ]);
 }
+
+exports['compile contract with two variables'] = function (test) {
+    var result = compileCommand('contract Simple { int a; int b; }');
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+
+    test.deepEqual(result, [ 
+        'public class Simple : Contract {',
+        '    Int256 a = new Int256();',
+        '',
+        '    Int256 b = new Int256();',
+        '}'
+    ]);
+}
