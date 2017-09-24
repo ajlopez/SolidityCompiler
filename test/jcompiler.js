@@ -74,3 +74,15 @@ exports['compile true constant'] = function (test) {
     test.equal(result, 'true');
 };
 
+exports['compile call'] = function (test) {
+    var parser = parsers.parser('fn(1,2)');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'fn(1, 2)');
+};
+
