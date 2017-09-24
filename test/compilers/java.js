@@ -218,3 +218,15 @@ exports['compile multiply integer and integer'] = function (test) {
     test.equal(result, '21 * 2');
 };
 
+exports['compile return command without return value'] = function (test) {
+    var parser = parsers.parser('return;');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'return;');
+}
+
