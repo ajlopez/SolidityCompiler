@@ -11,6 +11,15 @@ function compileExpression(code) {
     return expr.compile(compiler);
 }
 
+function compileCommand(code) {
+    var parser = parsers.parser(code);
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseCommand();
+    
+    return expr.compile(compiler);
+}
+
 exports['compile simple integer'] = function (test) {
     var result = compileExpression('42');
     
@@ -138,36 +147,21 @@ exports['compile multiply integer and integer'] = function (test) {
 };
 
 exports['compile return command without return value'] = function (test) {
-    var parser = parsers.parser('return;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('return;');
     
     test.ok(result);
     test.equal(result, 'return;');
 }
 
 exports['compile return command with return value'] = function (test) {
-    var parser = parsers.parser('return 42;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('return 42;');
     
     test.ok(result);
     test.equal(result, 'return 42;');
 }
 
 exports['compile composite command'] = function (test) {
-    var parser = parsers.parser('{ answer = 42; return 42; }');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('{ answer = 42; return 42; }');
     
     test.ok(result);
     test.ok(Array.isArray(result));
@@ -175,72 +169,42 @@ exports['compile composite command'] = function (test) {
 }
 
 exports['compile int variable command'] = function (test) {
-    var parser = parsers.parser('int a;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('int a;');
 
     test.ok(result);
     test.equal(result, 'Int256 a = new Int256();');
 }
 
 exports['compile int variable command with initial value'] = function (test) {
-    var parser = parsers.parser('int a = 42;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('int a = 42;');
 
     test.ok(result);
     test.equal(result, 'Int256 a = new Int256(42);');
 }
 
 exports['compile uint variable command'] = function (test) {
-    var parser = parsers.parser('uint a;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('uint a;');
 
     test.ok(result);
     test.equal(result, 'UInt256 a = new UInt256();');
 }
 
 exports['compile uint variable command with initial value'] = function (test) {
-    var parser = parsers.parser('uint a = 42;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('uint a = 42;');
 
     test.ok(result);
     test.equal(result, 'UInt256 a = new UInt256(42);');
 }
 
 exports['compile string variable command'] = function (test) {
-    var parser = parsers.parser('string a;');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('string a;');
 
     test.ok(result);
     test.equal(result, 'String a;');
 }
 
 exports['compile string variable command with initial value'] = function (test) {
-    var parser = parsers.parser('string a = "foo";');
-    var compiler = compilers.compiler();
-    
-    var cmd = parser.parseCommand();
-    
-    var result = cmd.compile(compiler);
+    var result = compileCommand('string a = "foo";');
 
     test.ok(result);
     test.equal(result, 'String a = "foo";');
