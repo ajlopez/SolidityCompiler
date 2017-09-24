@@ -230,3 +230,16 @@ exports['compile return command without return value'] = function (test) {
     test.equal(result, 'return;');
 }
 
+exports['compile return command with return value'] = function (test) {
+    var parser = parsers.parser('return 42;');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'return 42;');
+}
+
+
