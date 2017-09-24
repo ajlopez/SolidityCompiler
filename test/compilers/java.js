@@ -255,4 +255,27 @@ exports['compile composite command'] = function (test) {
     test.deepEqual(result, [ 'answer.set(42);', 'return 42;' ]);
 }
 
+exports['compile int variable command'] = function (test) {
+    var parser = parsers.parser('int a;');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+
+    test.ok(result);
+    test.equal(result, 'Int256 a = new Int256();');
+}
+
+exports['compile int variable command with initial value'] = function (test) {
+    var parser = parsers.parser('int a = 42;');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+
+    test.ok(result);
+    test.equal(result, 'Int256 a = new Int256(42);');
+}
 
