@@ -303,3 +303,28 @@ exports['compile uint variable command with initial value'] = function (test) {
     test.equal(result, 'UInt256 a = new UInt256(42);');
 }
 
+
+exports['compile string variable command'] = function (test) {
+    var parser = parsers.parser('string a;');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+
+    test.ok(result);
+    test.equal(result, 'string a;');
+}
+
+exports['compile string variable command with initial value'] = function (test) {
+    var parser = parsers.parser('string a = "foo";');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+
+    test.ok(result);
+    test.equal(result, 'string a = "foo";');
+}
+
