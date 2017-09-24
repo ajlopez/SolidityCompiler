@@ -14,3 +14,15 @@ exports['compile simple integer'] = function (test) {
     test.equal(result, 42);
 };
 
+exports['compile simple string'] = function (test) {
+    var parser = parsers.parser('"foo"');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, '"foo"');
+};
+
