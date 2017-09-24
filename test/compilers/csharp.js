@@ -242,4 +242,16 @@ exports['compile return command with return value'] = function (test) {
     test.equal(result, 'return 42;');
 }
 
+exports['compile composite command'] = function (test) {
+    var parser = parsers.parser('{ answer = 42; return 42; }');
+    var compiler = compilers.compiler();
+    
+    var cmd = parser.parseCommand();
+    
+    var result = cmd.compile(compiler);
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.deepEqual(result, [ 'answer.Set(42);', 'return 42;' ]);
+}
 
