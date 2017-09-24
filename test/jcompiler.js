@@ -50,3 +50,27 @@ exports['compile simple assignment to variable'] = function (test) {
     test.equal(result, 'answer.set(42)');
 };
 
+exports['compile false constant'] = function (test) {
+    var parser = parsers.parser('false');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'false');
+};
+
+exports['compile true constant'] = function (test) {
+    var parser = parsers.parser('true');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'true');
+};
+
