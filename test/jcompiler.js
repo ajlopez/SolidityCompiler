@@ -74,7 +74,7 @@ exports['compile true constant'] = function (test) {
     test.equal(result, 'true');
 };
 
-exports['compile call'] = function (test) {
+exports['compile call with two arguments'] = function (test) {
     var parser = parsers.parser('fn(1,2)');
     var compiler = compilers.compiler();
     
@@ -84,5 +84,29 @@ exports['compile call'] = function (test) {
     
     test.ok(result);
     test.equal(result, 'fn(1, 2)');
+};
+
+exports['compile call with one argument'] = function (test) {
+    var parser = parsers.parser('fn(x)');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'fn(x)');
+};
+
+exports['compile call with no arguments'] = function (test) {
+    var parser = parsers.parser('fn()');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'fn()');
 };
 
