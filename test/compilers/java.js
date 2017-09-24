@@ -2,217 +2,136 @@
 var parsers = require('../../lib/parsers');
 var compilers = require('../../lib/compilers/java');
 
-exports['compile simple integer'] = function (test) {
-    var parser = parsers.parser('42');
+function compileExpression(code) {
+    var parser = parsers.parser(code);
     var compiler = compilers.compiler();
     
     var expr = parser.parseExpression();
     
-    var result = expr.compile(compiler);
+    return expr.compile(compiler);
+}
+
+exports['compile simple integer'] = function (test) {
+    var result = compileExpression('42');
     
     test.ok(result);
     test.equal(result, 42);
 };
 
 exports['compile simple string'] = function (test) {
-    var parser = parsers.parser('"foo"');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('"foo"');
     
     test.ok(result);
     test.equal(result, '"foo"');
 };
 
 exports['compile simple name'] = function (test) {
-    var parser = parsers.parser('foo');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('foo');
     
     test.ok(result);
     test.equal(result, 'foo');
 };
 
 exports['compile simple assignment to variable'] = function (test) {
-    var parser = parsers.parser('answer = 42');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('answer = 42');
     
     test.ok(result);
     test.equal(result, 'answer.set(42)');
 };
 
 exports['compile false constant'] = function (test) {
-    var parser = parsers.parser('false');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('false');
     
     test.ok(result);
     test.equal(result, 'false');
 };
 
 exports['compile true constant'] = function (test) {
-    var parser = parsers.parser('true');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('true');
     
     test.ok(result);
     test.equal(result, 'true');
 };
 
 exports['compile call with two arguments'] = function (test) {
-    var parser = parsers.parser('fn(1,2)');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('fn(1,2)');
     
     test.ok(result);
     test.equal(result, 'fn(1, 2)');
 };
 
 exports['compile call with one argument'] = function (test) {
-    var parser = parsers.parser('fn(x)');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('fn(x)');
     
     test.ok(result);
     test.equal(result, 'fn(x)');
 };
 
 exports['compile call with no arguments'] = function (test) {
-    var parser = parsers.parser('fn()');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('fn()');
     
     test.ok(result);
     test.equal(result, 'fn()');
 };
 
 exports['compile add variable to integer'] = function (test) {
-    var parser = parsers.parser('a + 1');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('a + 1');
     
     test.ok(result);
     test.equal(result, 'a.add(1)');
 };
 
 exports['compile add integer to variable'] = function (test) {
-    var parser = parsers.parser('1 + a');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('1 + a');
     
     test.ok(result);
     test.equal(result, 'a.add(1)');
 };
 
 exports['compile add integer to integer'] = function (test) {
-    var parser = parsers.parser('1 + 2');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('1 + 2');
     
     test.ok(result);
     test.equal(result, '1 + 2');
 };
 
 exports['compile subtract variable and integer'] = function (test) {
-    var parser = parsers.parser('a - 1');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('a - 1');
     
     test.ok(result);
     test.equal(result, 'a.subtract(1)');
 };
 
 exports['compile subtract integer and variable'] = function (test) {
-    var parser = parsers.parser('1 - a');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('1 - a');
     
     test.ok(result);
     test.equal(result, 'a.subtractFrom(1)');
 };
 
 exports['compile subtract integer and integer'] = function (test) {
-    var parser = parsers.parser('1 - 2');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('1 - 2');
     
     test.ok(result);
     test.equal(result, '1 - 2');
 };
 
 exports['compile multiply variable and integer'] = function (test) {
-    var parser = parsers.parser('a * 2');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('a * 2');
     
     test.ok(result);
     test.equal(result, 'a.multiply(2)');
 };
 
 exports['compile multiply integer and variable'] = function (test) {
-    var parser = parsers.parser('2 * a');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('2 * a');
     
     test.ok(result);
     test.equal(result, 'a.multiply(2)');
 };
 
 exports['compile multiply integer and integer'] = function (test) {
-    var parser = parsers.parser('21 * 2');
-    var compiler = compilers.compiler();
-    
-    var expr = parser.parseExpression();
-    
-    var result = expr.compile(compiler);
+    var result = compileExpression('21 * 2');
     
     test.ok(result);
     test.equal(result, '21 * 2');
