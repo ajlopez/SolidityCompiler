@@ -146,3 +146,39 @@ exports['compile add integer to integer'] = function (test) {
     test.equal(result, '1 + 2');
 };
 
+exports['compile subtract variable and integer'] = function (test) {
+    var parser = parsers.parser('a - 1');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'a.subtract(1)');
+};
+
+exports['compile subtract integer and variable'] = function (test) {
+    var parser = parsers.parser('1 - a');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'a.subtractFrom(1)');
+};
+
+exports['compile subtract integer and integer'] = function (test) {
+    var parser = parsers.parser('1 - 2');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, '1 - 2');
+};
+
