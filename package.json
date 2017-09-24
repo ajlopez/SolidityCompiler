@@ -20,7 +20,7 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "simpleunit ./test"
+    "test": "simpleunit ./test -r"
   },
   "dependencies": {
   },

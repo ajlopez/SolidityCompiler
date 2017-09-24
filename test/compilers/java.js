@@ -1,6 +1,6 @@
 
-var parsers = require('../lib/parsers');
-var compilers = require('../lib/compilers/java');
+var parsers = require('../../lib/parsers');
+var compilers = require('../../lib/compilers/java');
 
 exports['compile simple integer'] = function (test) {
     var parser = parsers.parser('42');
