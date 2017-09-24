@@ -26,3 +26,15 @@ exports['compile simple string'] = function (test) {
     test.equal(result, '"foo"');
 };
 
+exports['compile simple name'] = function (test) {
+    var parser = parsers.parser('foo');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'foo');
+};
+
