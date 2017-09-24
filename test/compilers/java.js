@@ -210,4 +210,13 @@ exports['compile string variable command with initial value'] = function (test) 
     test.equal(result, 'String a = "foo";');
 }
 
+exports['compile function with two arguments, no return type and empty body'] = function (test) {
+    var result = compileCommand('function fn(int a, int b) {}');
+
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.deepEqual(result, [ 'public void fn(Int256 a, Int256 b) {', '}' ]);
+}
+
+
 
