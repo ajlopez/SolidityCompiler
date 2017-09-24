@@ -226,3 +226,11 @@ exports['compile function with two arguments, int type and non-empty body'] = fu
     test.deepEqual(result, [ 'public Int256 fn(Int256 a, Int256 b) {', '    return a.Add(b);', '}' ]);
 }
 
+exports['compile empty contract'] = function (test) {
+    var result = compileCommand('contract Empty { }');
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+
+    test.deepEqual(result, [ 'public class Empty : Contract {', '}' ]);
+}
