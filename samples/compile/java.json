@@ -1,0 +1,5 @@
+{
+    "target": "java",
+    "package": "com.ajlopez.contracts.sample",
+    "basePackage": "com.ajlopez.contracts"
+}
