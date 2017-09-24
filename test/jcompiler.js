@@ -110,3 +110,39 @@ exports['compile call with no arguments'] = function (test) {
     test.equal(result, 'fn()');
 };
 
+exports['compile add variable to integer'] = function (test) {
+    var parser = parsers.parser('a + 1');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'a.add(1)');
+};
+
+exports['compile add integer to variable'] = function (test) {
+    var parser = parsers.parser('1 + a');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, 'a.add(1)');
+};
+
+exports['compile add integer to integer'] = function (test) {
+    var parser = parsers.parser('1 + 2');
+    var compiler = compilers.compiler();
+    
+    var expr = parser.parseExpression();
+    
+    var result = expr.compile(compiler);
+    
+    test.ok(result);
+    test.equal(result, '1 + 2');
+};
+
