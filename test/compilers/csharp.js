@@ -146,6 +146,13 @@ exports['compile multiply integer and integer'] = function (test) {
     test.equal(result, '21 * 2');
 };
 
+exports['compile break command'] = function (test) {
+    var result = compileCommand('break;');
+    
+    test.ok(result);
+    test.equal(result, 'break;');
+}
+
 exports['compile return command without return value'] = function (test) {
     var result = compileCommand('return;');
     
