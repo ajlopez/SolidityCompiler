@@ -11,6 +11,6 @@ var code = fs.readFileSync(filename).toString();
 
 var compiled = solcomp.compileCode(code, options);
 
-console.log(compiled);
+console.log(compiled);  
 
 
