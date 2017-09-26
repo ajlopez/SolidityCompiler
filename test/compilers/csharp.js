@@ -153,6 +153,13 @@ exports['compile break command'] = function (test) {
     test.equal(result, 'break;');
 }
 
+exports['compile continue command'] = function (test) {
+    var result = compileCommand('continue;');
+    
+    test.ok(result);
+    test.equal(result, 'continue;');
+}
+
 exports['compile return command without return value'] = function (test) {
     var result = compileCommand('return;');
     
