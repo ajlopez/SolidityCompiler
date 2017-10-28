@@ -37,6 +37,7 @@ MIT
 - [Solidity Frequently Asked Questions](http://solidity.readthedocs.io/en/latest/frequently-asked-questions.html?#)
 - [Solidity End-to-End Tests](https://github.com/ethereum/solidity/blob/develop/test/libsolidity/SolidityEndToEndTest.cpp)
 - [Solidity Contract Examples](https://github.com/fivedogit/solidity-baby-steps/tree/master/contracts/)
+- [Ethereum Virtual Machine: Where are the opcode 0xfe and 0xfd documented?](https://ethereum.stackexchange.com/questions/19152/where-are-the-opcode-0xfe-and-0xfd-documented)
 
 ## Contribution
 
