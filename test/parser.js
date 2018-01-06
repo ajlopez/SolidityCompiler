@@ -993,6 +993,26 @@ exports['parse function with payable modifier'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { payable: true }, body: { type: 'CompositeCommand', commands: [] } } );
 };
 
+exports['parse function with pure and view modifiers'] = function (test) {
+	var parser = parsers.parser('function MyFunction() pure view {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'FunctionCommand');
+
+	test.equal(cmd.name(), 'MyFunction');
+	test.equal(cmd.returns(), null);
+	test.equal(cmd.visibility(), null);
+	test.deepEqual(cmd.modifiers(),  { pure: true, view: true });
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { pure: true, view: true }, body: { type: 'CompositeCommand', commands: [] } } );
+};
+
 exports['parse empty function with external visibility'] = function (test) {
 	var parser = parsers.parser('function MyFunction() external {}');
 	var cmd = parser.parseCommand();
