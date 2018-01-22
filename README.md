@@ -39,6 +39,7 @@ MIT
 - [Solidity Contract Examples](https://github.com/fivedogit/solidity-baby-steps/tree/master/contracts/)
 - [Ethereum Virtual Machine: Where are the opcode 0xfe and 0xfd documented?](https://ethereum.stackexchange.com/questions/19152/where-are-the-opcode-0xfe-and-0xfd-documented)
 - [Ethereum Solidity Contract Tutorial](https://github.com/ethereum/go-ethereum/wiki/Contract-Tutorial)
+- [Joyfully Universal Language for (Inline) Assembly](http://solidity.readthedocs.io/en/develop/julia.html)
 
 ## Contribution
 
