@@ -1066,6 +1066,24 @@ exports['parse empty function with returns type'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] }, returns: 'int256' } );
 };
 
+exports['parse empty function with returns tuple type'] = function (test) {
+	var parser = parsers.parser('function MyFunction() returns (uint, string) {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'MyFunction');
+	test.ok(cmd.returns());
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
+	test.equal(cmd.returns().name(), 'tuple');
+	test.equal(cmd.returns().types()[0].name(), 'uint256');
+	test.equal(cmd.returns().types()[1].name(), 'string');
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(0, cmd.body().commands().length);
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', body: { type: 'CompositeCommand', commands: [] }, returns: 'int256' } );
+};
+
 exports['parse string variable'] = function (test) {
 	var parser = parsers.parser('string name;');
 	var cmd = parser.parseCommand();
