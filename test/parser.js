@@ -1308,3 +1308,23 @@ exports['parse int two dim array variable'] = function (test) {
 	test.equal(cmd.type().length(1), -1);
 };
 
+exports['parse empty modifier'] = function (test) {
+	var parser = parsers.parser('modifier MyModifier() { _; }');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ModifierCommand');
+
+	test.equal(cmd.name(), 'MyModifier');
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 1);
+	test.equal(cmd.arity(), 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'ModifierCommand', name: 'MyModifier', body: { type: 'CompositeCommand', commands: [
+        { type: 'ExpressionCommand', expression: { type: 'NameExpression', name: '_' } }
+    ] } } );
+};
+
