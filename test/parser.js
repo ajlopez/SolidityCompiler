@@ -985,12 +985,12 @@ exports['parse function with payable modifier'] = function (test) {
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
 	test.equal(cmd.visibility(), null);
-	test.deepEqual(cmd.modifiers(),  { payable: true });
+	test.deepEqual(cmd.modifiers(),  [ 'payable' ]);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { payable: true }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: [ 'payable' ], body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse function with pure and view modifiers'] = function (test) {
