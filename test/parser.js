@@ -1005,12 +1005,12 @@ exports['parse function with pure and view modifiers'] = function (test) {
 	test.equal(cmd.name(), 'MyFunction');
 	test.equal(cmd.returns(), null);
 	test.equal(cmd.visibility(), null);
-	test.deepEqual(cmd.modifiers(),  { pure: true, view: true });
+	test.deepEqual(cmd.modifiers(),  [ 'pure', 'view' ]);
 	test.ok(cmd.body());
 	test.ok(cmd.body().commands);
 	test.equal(cmd.body().commands().length, 0);
 
-	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: { pure: true, view: true }, body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction', modifiers: [ 'pure', 'view' ], body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse empty function with external visibility'] = function (test) {
