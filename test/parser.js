@@ -811,7 +811,26 @@ exports['parse empty contract'] = function (test) {
 	test.ok(cmd.body().commands);
 	test.equal(0, cmd.body().commands().length);
 
-	test.deepEqual(cmd.toObject(), { type: 'ContractCommand', name: 'MyContract', body: { type: 'CompositeCommand', commands: [] } } );
+	test.deepEqual(cmd.toObject(), { type: 'ContractCommand', name: 'MyContract', is: [], body: { type: 'CompositeCommand', commands: [] } } );
+};
+
+exports['parse empty contract with inheritance'] = function (test) {
+	var parser = parsers.parser('contract MyContract is ParentContract {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ContractCommand');
+
+	test.equal(cmd.name(), 'MyContract');
+    test.deepEqual(cmd.is(), [ 'ParentContract' ]);
+    
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(0, cmd.body().commands().length);
+
+	test.deepEqual(cmd.toObject(), { type: 'ContractCommand', name: 'MyContract', is: [ 'ParentContract' ], body: { type: 'CompositeCommand', commands: [] } } );
 };
 
 exports['parse empty library'] = function (test) {
