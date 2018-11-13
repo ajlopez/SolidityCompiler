@@ -1209,8 +1209,8 @@ exports['parse bytes32 variable'] = function (test) {
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
-	test.equal(cmd.name(), 'name');
-	test.equal(cmd.type().name(), 'bytes1');
+	test.equal(cmd.name(), 'hash');
+	test.equal(cmd.type().name(), 'bytes32');
 
 	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'hash', vartype: 'bytes32' });
 };
