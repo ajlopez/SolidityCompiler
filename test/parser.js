@@ -1215,6 +1215,20 @@ exports['parse bytes32 variable'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'hash', vartype: 'bytes32' });
 };
 
+exports['parse bytesx variables'] = function (test) {
+    for (var k = 1; k <= 32; k++) {
+        var vtype = 'bytes' + k;
+        var parser = parsers.parser(vtype + ' hash;');
+        var cmd = parser.parseCommand();
+        
+        test.ok(cmd);
+        test.equal(cmd.name(), 'hash');
+        test.equal(cmd.type().name(), vtype);
+
+        test.deepEqual(cmd.toObject(), { type: 'VarCommand', name: 'hash', vartype: vtype });
+    }    
+};
+
 exports['parse int variable'] = function (test) {
 	var parser = parsers.parser('int name;');
 	var cmd = parser.parseCommand();
