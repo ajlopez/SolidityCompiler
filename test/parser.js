@@ -795,6 +795,8 @@ exports['parse empty struct'] = function (test) {
 	test.equal(cmd.cmdtype(), 'StructCommand');
 
 	test.equal(cmd.name(), 'MyStruct');
+	test.ok(cmd.fields());
+	test.equal(cmd.fields().length, 0);
 };
 
 exports['parse empty contract'] = function (test) {
