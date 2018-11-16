@@ -799,6 +799,22 @@ exports['parse empty struct'] = function (test) {
 	test.equal(cmd.fields().length, 0);
 };
 
+exports['parse struct with one field'] = function (test) {
+	var parser = parsers.parser('struct MyStruct { uint value; }');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'StructCommand');
+
+	test.equal(cmd.name(), 'MyStruct');
+	test.ok(cmd.fields());
+	test.equal(cmd.fields().length, 1);
+	test.equal(cmd.fields()[0].name(), 'value');
+	test.equal(cmd.fields()[0].type().name(), 'uint256');
+};
+
 exports['parse empty contract'] = function (test) {
 	var parser = parsers.parser('contract MyContract {}');
 	var cmd = parser.parseCommand();
