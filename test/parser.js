@@ -487,12 +487,12 @@ exports['parse call with arguments'] = function (test) {
 exports['parse emit event with arguments'] = function (test) {
 	var parser = parsers.parser('emit Foo(1, 42)');
 	
-	var expr = parser.parseExpression();
+	var expr = parser.parseCommand();
 	
 	test.ok(expr);
 	
 	test.ok(expr.exprtype);
-	test.equal(expr.exprtype(), 'EmitExpression');
+	test.equal(expr.exprtype(), 'EmitCommand');
 
 	test.equal(expr.name(), 'Foo');
 	test.ok(expr.arguments());
@@ -501,7 +501,7 @@ exports['parse emit event with arguments'] = function (test) {
 	test.equal(expr.arguments()[0].value(), 1);
 	test.equal(expr.arguments()[1].value(), 42);
 
-	test.deepEqual(expr.toObject(), { type: 'EmitExpression', name: 'Foo', arguments: [ { type: 'IntegerExpression', value: 1 }, { type: 'IntegerExpression', value: 42 } ] });
+	test.deepEqual(expr.toObject(), { type: 'EmitCommand', name: 'Foo', arguments: [ { type: 'IntegerExpression', value: 1 }, { type: 'IntegerExpression', value: 42 } ] });
 };
 
 exports['parse member access with arguments'] = function (test) {
