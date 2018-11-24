@@ -952,6 +952,113 @@ exports['parse event with two arguments'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'EventCommand', name: 'MyEvent', arguments: [ { name: 'a', type: 'int256' }, { name: 'b', type: 'int256' } ] } );
 };
 
+exports['parse empty constructor'] = function (test) {
+	var parser = parsers.parser('constructor() {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ConstructorCommand');
+
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+	test.equal(cmd.arity(), 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'ConstructorCommand', body: { type: 'CompositeCommand', commands: [] } } );
+};
+
+exports['parse constructor with argument'] = function (test) {
+	var parser = parsers.parser('constructor(int a) {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ConstructorCommand');
+
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
+	
+	test.ok(cmd.arguments());
+	test.equal(1, cmd.arguments().length);
+	test.equal('a', cmd.arguments()[0].name);
+	test.equal('int256', cmd.arguments()[0].type.name());
+	
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+	test.equal(cmd.arity(), 1);
+
+	test.deepEqual(cmd.toObject(), { type: 'ConstructorCommand', arguments: [ { name: 'a', type: 'int256' } ], body: { type: 'CompositeCommand', commands: [] } } );
+};
+
+exports['parse constructor with two arguments'] = function (test) {
+	var parser = parsers.parser('constructor(int a, int b) {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ConstructorCommand');
+
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
+	
+	test.ok(cmd.arguments());
+	test.equal(2, cmd.arguments().length);
+	test.equal('a', cmd.arguments()[0].name);
+	test.equal('int256', cmd.arguments()[0].type.name());
+	test.equal('b', cmd.arguments()[1].name);
+	test.equal('int256', cmd.arguments()[1].type.name());
+	
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+	test.equal(cmd.arity(), 2);
+
+	test.deepEqual(cmd.toObject(), { type: 'ConstructorCommand', arguments: [ { name: 'a', type: 'int256' }, { name: 'b', type: 'int256' } ], body: { type: 'CompositeCommand', commands: [] } } );
+};
+
+exports['parse constructor with payable modifier'] = function (test) {
+	var parser = parsers.parser('constructor() payable {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ConstructorCommand');
+
+	test.equal(cmd.visibility(), null);
+	test.deepEqual(cmd.modifiers(),  [ 'payable' ]);
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'ConstructorCommand', modifiers: [ 'payable' ], body: { type: 'CompositeCommand', commands: [] } } );
+};
+
+exports['parse constructor with explicit public modifier'] = function (test) {
+	var parser = parsers.parser('constructor() public {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'ConstructorCommand');
+
+	test.equal(cmd.visibility(), 'public');
+	test.deepEqual(cmd.modifiers(), null);
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(cmd.body().commands().length, 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'ConstructorCommand', visibility: 'public', body: { type: 'CompositeCommand', commands: [] } } );
+};
+
 exports['parse empty function'] = function (test) {
 	var parser = parsers.parser('function MyFunction() {}');
 	var cmd = parser.parseCommand();
