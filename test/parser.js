@@ -946,6 +946,12 @@ exports['parse event with argument'] = function (test) {
 	test.equal(cmd.arity(), 1);
 
 	test.deepEqual(cmd.toObject(), { type: 'EventCommand', name: 'MyEvent', arguments: [ { name: 'a', type: 'int256' } ] } );
+    
+    var events = parser.events();
+    
+    test.ok(events);
+    test.ok(events.MyEvent);
+    test.equal(events.MyEvent, cmd);
 };
 
 exports['parse event with two arguments'] = function (test) {
