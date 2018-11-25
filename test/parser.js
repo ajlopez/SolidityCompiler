@@ -833,6 +833,12 @@ exports['parse struct with one field'] = function (test) {
 	test.equal(cmd.fields().length, 1);
 	test.equal(cmd.fields()[0].name(), 'value');
 	test.equal(cmd.fields()[0].type().name(), 'uint256');
+    
+    var structs = parser.structs();
+    
+    test.ok(structs);
+    test.ok(structs.MyStruct);
+    test.equal(structs.MyStruct, cmd);
 };
 
 exports['parse empty contract'] = function (test) {
