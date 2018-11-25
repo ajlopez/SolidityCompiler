@@ -850,6 +850,11 @@ exports['parse empty contract'] = function (test) {
 	test.equal(0, cmd.body().commands().length);
 
 	test.deepEqual(cmd.toObject(), { type: 'ContractCommand', name: 'MyContract', is: [], body: { type: 'CompositeCommand', commands: [] } } );
+    
+    var contracts = parser.contracts();
+    
+    test.ok(contracts.MyContract);
+    test.equal(cmd, contracts.MyContract);
 };
 
 exports['parse empty contract with inheritance'] = function (test) {
