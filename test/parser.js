@@ -1423,6 +1423,19 @@ exports['parse bytes variables with size'] = function (test) {
 	}
 };
 
+exports['parse struct variable'] = function (test) {
+	var parser = parsers.parser('struct MyStruct {}\nMyStruct stru;');
+
+    parser.parseCommand();
+    
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'stru');
+	test.equal(cmd.type().name(), 'MyStruct');
+};
+
+
 exports['parse unsigned int variable'] = function (test) {
 	var parser = parsers.parser('uint name;');
 	var cmd = parser.parseCommand();
