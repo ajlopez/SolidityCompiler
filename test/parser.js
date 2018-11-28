@@ -1435,6 +1435,17 @@ exports['parse struct variable'] = function (test) {
 	test.equal(cmd.type().name(), 'MyStruct');
 };
 
+exports['parse contract variable'] = function (test) {
+	var parser = parsers.parser('contract MyContract {}\nMyContract contr;');
+
+    parser.parseCommand();
+    
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+	test.equal(cmd.name(), 'contr');
+	test.equal(cmd.type().name(), 'MyContract');
+};
 
 exports['parse unsigned int variable'] = function (test) {
 	var parser = parsers.parser('uint name;');
