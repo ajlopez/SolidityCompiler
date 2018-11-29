@@ -864,7 +864,8 @@ exports['parse empty contract'] = function (test) {
 };
 
 exports['parse empty contract with inheritance'] = function (test) {
-	var parser = parsers.parser('contract MyContract is ParentContract {}');
+	var parser = parsers.parser('contract ParentContract {}\ncontract MyContract is ParentContract {}');
+	parser.parseCommand();
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
@@ -883,7 +884,9 @@ exports['parse empty contract with inheritance'] = function (test) {
 };
 
 exports['parse empty contract with two parent contracts'] = function (test) {
-	var parser = parsers.parser('contract MyContract is ParentContract1, ParentContract2 {}');
+	var parser = parsers.parser('contract ParentContract1 {}\ncontract ParentContract2 {}\ncontract MyContract is ParentContract1, ParentContract2 {}');
+	parser.parseCommand();
+	parser.parseCommand();
 	var cmd = parser.parseCommand();
 	
 	test.ok(cmd);
