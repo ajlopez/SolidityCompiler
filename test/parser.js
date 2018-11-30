@@ -1079,6 +1079,25 @@ exports['parse constructor with explicit public modifier'] = function (test) {
 	test.deepEqual(cmd.toObject(), { type: 'ConstructorCommand', visibility: 'public', body: { type: 'CompositeCommand', commands: [] } } );
 };
 
+exports['parse function without body'] = function (test) {
+	var parser = parsers.parser('function MyFunction();');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'FunctionCommand');
+
+	test.equal(cmd.name(), 'MyFunction');
+	test.equal(cmd.returns(), null);
+	test.equal(cmd.visibility(), null);
+	test.equal(cmd.modifiers(), null);
+	test.equal(cmd.body(), null);
+	test.equal(cmd.arity(), 0);
+
+	test.deepEqual(cmd.toObject(), { type: 'FunctionCommand', name: 'MyFunction' } );
+};
+
 exports['parse empty function'] = function (test) {
 	var parser = parsers.parser('function MyFunction() {}');
 	var cmd = parser.parseCommand();
