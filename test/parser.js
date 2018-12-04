@@ -841,6 +841,28 @@ exports['parse struct with one field'] = function (test) {
     test.equal(structs.MyStruct, cmd);
 };
 
+exports['parse empty interface'] = function (test) {
+	var parser = parsers.parser('interface MyInterface {}');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'InterfaceCommand');
+
+	test.equal(cmd.name(), 'MyInterface');
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(0, cmd.body().commands().length);
+
+	test.deepEqual(cmd.toObject(), { type: 'InterfaceCommand', name: 'MyInterface', is: [], body: { type: 'CompositeCommand', commands: [] } } );
+    
+    var interfaces = parser.interfaces();
+    
+    test.ok(interfaces.MyInterface);
+    test.equal(cmd, interfaces.MyInterface);
+};
+
 exports['parse empty contract'] = function (test) {
 	var parser = parsers.parser('contract MyContract {}');
 	var cmd = parser.parseCommand();
