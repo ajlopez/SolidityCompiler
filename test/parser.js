@@ -863,6 +863,28 @@ exports['parse empty interface'] = function (test) {
     test.equal(cmd, interfaces.MyInterface);
 };
 
+exports['parse interface'] = function (test) {
+	var parser = parsers.parser('interface MyInterface { function myfunction() public; }');
+	var cmd = parser.parseCommand();
+	
+	test.ok(cmd);
+		
+	test.ok(cmd.cmdtype());
+	test.equal(cmd.cmdtype(), 'InterfaceCommand');
+
+	test.equal(cmd.name(), 'MyInterface');
+	test.ok(cmd.body());
+	test.ok(cmd.body().commands);
+	test.equal(1, cmd.body().commands().length);
+
+	test.deepEqual(cmd.toObject(), { type: 'InterfaceCommand', name: 'MyInterface', is: [], body: { type: 'CompositeCommand', commands: [ { type: 'FunctionCommand', name: 'myfunction', visibility: 'public' } ] } } );
+    
+    var interfaces = parser.interfaces();
+    
+    test.ok(interfaces.MyInterface);
+    test.equal(cmd, interfaces.MyInterface);
+};
+
 exports['parse empty contract'] = function (test) {
 	var parser = parsers.parser('contract MyContract {}');
 	var cmd = parser.parseCommand();
