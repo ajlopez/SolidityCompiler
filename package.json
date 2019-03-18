@@ -23,6 +23,7 @@
     "test": "simpleunit ./test -r"
   },
   "dependencies": {
+    "gelex": "0.0.3"
   },
   "devDependencies": {
     "simpleunit": "0.0.7"
